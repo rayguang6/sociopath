@@ -12,6 +12,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 
 <title><tiles:insertAttribute name="title" /></title>
     
@@ -22,7 +27,10 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
-<link href="${contextRoot}/css/styles.css" rel="stylesheet">
+	<link href="${contextRoot}/css/styles.css" rel="stylesheet">
+
+
+
 
   </head>
   <body>

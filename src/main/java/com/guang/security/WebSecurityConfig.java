@@ -1,5 +1,7 @@
 package com.guang.security;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -51,7 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(
 						"/profile",
 						"/edit-profile-about",
-						"/upload-profile-photo"
+						"/upload-profile-photo",
+						"/profilephoto"
 						)
 				.authenticated()
 				.anyRequest()
@@ -75,7 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth
 			.inMemoryAuthentication()
 			.withUser("john")
-			.password("hello")
+			.password("{noop}hello")
 			.roles("USER");
 		
 		// @formatter:on

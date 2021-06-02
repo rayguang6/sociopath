@@ -49,4 +49,10 @@ public class UserService implements UserDetailsService {
 		
 		return new User(email, password, auth);
 	}
+
+
+
+	public SiteUser get(String email) {
+		return userDao.findByEmail(email);
+	}
 }

@@ -99,3 +99,27 @@ textarea {
 .d-flex.searchForm{
 	margin: auto;
 }
+
+
+/*PROFILE*/
+
+.profile-image{
+	float:left;
+	margin: 10px 0;
+}
+
+.avatar-img{
+	width:150px;
+}
+
+.profile-about{
+	width:100%;
+	border: 1px solid #808080;
+	padding:50px;
+	overflow:auto;
+}
+
+.profile-about-edit{
+	right:50px;
+	bottom:0px;
+}
