@@ -1,0 +1,101 @@
+
+
+.statusContainer{
+	width:66.67%;
+	margin: 10px auto;
+}
+
+.panel{
+	margin-top:30px;
+	border-radius: 5px 5px 3px 3px;
+	padding:0;
+}
+
+.panel-heading{
+	border-radius:5px 5px 0 0;
+	background-color:#0D6EFD;
+	padding: 10px 10px 10px 15px;
+	color:#fff;
+}
+
+.panel-body{
+    padding: 10px 10px 10px 15px;
+    border: 1px solid #808080;
+}
+
+.statusPostTitle{
+	text-align:center;
+	color:#fff;
+}
+
+
+
+.statusForm{
+	padding:10px;
+}
+
+.statusArea{
+    width: 100%;
+    background-color: #fff;
+    padding: 8px 12px;
+    word-wrap: break-word;
+}
+
+.myButton{
+    border: none;
+    border-radius:5px;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    color: #FFFFFF;
+    background-color: #4CAF50;
+}
+
+.statusButton{
+    margin-top: 20px;
+    border: none;
+    border-radius:5px;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    color: #FFFFFF;
+    background-color: #4CAF50;
+}
+
+
+textarea {
+	width: 100%;
+}
+
+.errors {
+	color: red;
+}
+
+.pagination {
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+.homepage-status {
+	text-align: center;
+	margin-top: 30px;
+	font-size: larger;
+}
+
+.edit-links {
+	margin-top: 10px;
+}
+
+.d-flex.searchForm{
+	margin: auto;
+}
