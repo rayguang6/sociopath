@@ -1,4 +1,4 @@
-package com.guang.model;
+package com.guang.model.dto;
 
 public class FileInfo {
 	private String basename;

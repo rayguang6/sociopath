@@ -1,4 +1,4 @@
-package com.guang.model;
+package com.guang.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,6 +31,11 @@ public class SiteUser {
 	@Column(name = "password", length=60)
 	private String password;
 	
+	@Column(name = "firstname", length=20)
+	private String firstname;
+	
+	@Column(name = "surname", length=20)
+	private String surname;
 	
 	
 	@Transient
@@ -47,6 +52,17 @@ public class SiteUser {
 		//this.enabled = true;
 	}
 	
+	
+	
+	public SiteUser(String email, String password, String firstname, String surname) {
+		this.email = email;
+		this.plainPassword = password;
+		this.repeatPassword = password;
+		this.firstname = firstname;
+		this.surname = surname;
+		//this.enabled = true;	
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -77,6 +93,38 @@ public class SiteUser {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getPlainPassword() {
+		return plainPassword;
+	}
+
+	public void setPlainPassword(String plainPassword) {
+		this.plainPassword = plainPassword;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
 	}
 
 	

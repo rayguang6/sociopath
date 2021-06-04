@@ -6,8 +6,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.guang.model.Interest;
-import com.guang.model.InterestDao;
+import com.guang.model.entity.Interest;
+import com.guang.model.repository.InterestDao;
 
 @Service
 public class InterestService {

@@ -1,4 +1,4 @@
-package com.guang.model;
+package com.guang.model.entity;
 
 import java.util.Date;
 

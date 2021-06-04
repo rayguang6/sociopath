@@ -123,3 +123,28 @@ textarea {
 	right:50px;
 	bottom:0px;
 }
+
+/* List of results */
+
+.results-photo {
+	display: inline-block;
+}
+
+.results-details {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.results-name {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.results-interests {
+	font-size: 1.3em;
+}
+
+.person-row {
+	border: 1px solid orange;
+	margin-bottom: 1em;
+}

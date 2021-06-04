@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.guang.model.StatusUpdate;
+import com.guang.model.entity.StatusUpdate;
 import com.guang.service.StatusUpdateService;
 
 @Controller

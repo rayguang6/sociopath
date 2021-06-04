@@ -3,9 +3,9 @@ package com.guang.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.guang.model.Profile;
-import com.guang.model.ProfileDao;
-import com.guang.model.SiteUser;
+import com.guang.model.entity.Profile;
+import com.guang.model.entity.SiteUser;
+import com.guang.model.repository.ProfileDao;
 
 @Service
 public class ProfileService {

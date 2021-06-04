@@ -17,8 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.guang.App;
-import com.guang.model.StatusUpdate;
-import com.guang.model.StatusUpdateDao;
+import com.guang.model.entity.StatusUpdate;
+import com.guang.model.repository.StatusUpdateDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)

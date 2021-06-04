@@ -6,8 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.guang.model.StatusUpdate;
-import com.guang.model.StatusUpdateDao;
+import com.guang.model.entity.StatusUpdate;
+import com.guang.model.repository.StatusUpdateDao;
 
 @Service
 public class StatusUpdateService {

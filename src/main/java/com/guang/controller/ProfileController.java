@@ -29,10 +29,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.guang.exception.ImageTooSmallException;
 import com.guang.exception.InvalidFileException;
-import com.guang.model.FileInfo;
-import com.guang.model.Interest;
-import com.guang.model.Profile;
-import com.guang.model.SiteUser;
+import com.guang.model.dto.FileInfo;
+import com.guang.model.entity.Interest;
+import com.guang.model.entity.Profile;
+import com.guang.model.entity.SiteUser;
 import com.guang.service.FileService;
 import com.guang.service.InterestService;
 import com.guang.service.ProfileService;

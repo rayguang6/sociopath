@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.guang.model.SiteUser;
-import com.guang.model.UserDao;
+import com.guang.model.entity.SiteUser;
+import com.guang.model.repository.UserDao;
 
 @Service
 public class UserService implements UserDetailsService {

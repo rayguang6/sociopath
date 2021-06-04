@@ -1,4 +1,4 @@
-package com.guang.model;
+package com.guang.model.entity;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,6 +17,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import com.guang.model.dto.FileInfo;
 
 
 @Entity
@@ -154,6 +156,12 @@ public class Profile {
 
 	public void removeInterest(String interestName) {
 		interests.remove(new Interest(interestName));
+	}
+
+	@Override
+	public String toString() {
+		return "Profile [id=" + id + ", user=" + user + ", about=" + about + ", photoDirectory=" + photoDirectory
+				+ ", photoName=" + photoName + ", photoExtension=" + photoExtension + ", interests=" + interests + "]";
 	}
 
 	

@@ -31,13 +31,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers(
 						"/",
+						"/search",
 						"/about",
 						"/register",
 						"/registrationconfirmed",
 						"/invaliduser",
 						"/expiredtoken",
 						"/verifyemail",
-						"/confirmregister"
+						"/confirmregister",
+						"/profilephoto/*"
 						)
 				.permitAll()
 				.antMatchers(
@@ -55,7 +57,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/profile/*",
 						"/edit-profile-about",
 						"/upload-profile-photo",
-						"/profilephoto/*",
 						"/save-interest",
 						"/delete-interest"
 						)
@@ -81,7 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth
 			.inMemoryAuthentication()
 			.withUser("john")
-			.password("{noop}hello")
+			.password("hello")
 			.roles("USER");
 		
 		// @formatter:on

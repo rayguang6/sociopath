@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.guang.exception.ImageTooSmallException;
 import com.guang.exception.InvalidFileException;
-import com.guang.model.FileInfo;
+import com.guang.model.dto.FileInfo;
 
 @Service
 public class FileService {

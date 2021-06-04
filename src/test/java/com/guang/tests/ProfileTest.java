@@ -15,9 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.guang.model.Interest;
-import com.guang.model.Profile;
-import com.guang.model.SiteUser;
+import com.guang.model.entity.Interest;
+import com.guang.model.entity.Profile;
+import com.guang.model.entity.SiteUser;
 import com.guang.service.InterestService;
 import com.guang.service.ProfileService;
 import com.guang.service.UserService;
