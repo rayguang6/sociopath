@@ -52,9 +52,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.hasRole("ADMIN")
 				.antMatchers(
 						"/profile",
+						"/profile/*",
 						"/edit-profile-about",
 						"/upload-profile-photo",
-						"/profilephoto"
+						"/profilephoto",
+						"/profilephoto/*"
 						)
 				.authenticated()
 				.anyRequest()
