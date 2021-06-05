@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
@@ -6,22 +5,26 @@
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
+
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <meta name="_csrf" content="${_csrf.token}"/>
-	<meta name="_csrf_header" content="${_csrf.headerName}"/>
 	<base href="/">
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
 
-<title><tiles:insertAttribute name="title" /></title>
+	<title><tiles:insertAttribute name="title" /></title>
     
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
@@ -30,11 +33,14 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
-<link href="${contextRoot}/css/styles.css" rel="stylesheet">
+	<link href="${contextRoot}/css/styles.css" rel="stylesheet">
 	<link href="${contextRoot}/css/styles.css" rel="stylesheet">
 
+	<script src="${contextRoot}/js/connectionmanager.js"></script>	
+	<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+	<script src="/webjars/stomp-websocket/stomp.min.js"></script>
 
-
+	<tiles:insertAttribute name="chatnotifications"></tiles:insertAttribute>
 
   </head>
   <body>
@@ -74,7 +80,7 @@
 	  	 <sec:authorize access="isAuthenticated()">
 	  	 
 	  	 
-	  	 <li class="nav-item"><a class="nav-link" href="${contextRoot}/profile">Profile</a></li>
+	  	 <li><a href="${contextRoot}/profile"><sec:authentication property="principal.firstname" />'s Profile</a></li>
         	 
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -118,6 +124,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
 	<script src="${contextRoot}/js/bootstrap.min.js"></script>
-   
+	
+	<sec:authorize access="isAuthenticated()">
+		<script>
+			connectionManager.connect();
+		</script>
+	</sec:authorize>
+	
   </body>
 </html>

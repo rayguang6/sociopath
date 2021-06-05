@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -109,21 +110,32 @@ public class ProfileController {
 		
 		SiteUser user = getUser();
 		
+		String firstname = user.getFirstname();
+		String surname = user.getSurname();
+		
 		ModelAndView modelAndView = showProfile(user);
 		
 		modelAndView.getModel().put("ownProfile", true);
+		modelAndView.getModel().put("firstname", firstname);
+		modelAndView.getModel().put("surname", surname);
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/profile/{id}")
+	@RequestMapping(value = "/profile/{id}")
 	public ModelAndView showProfile(@PathVariable("id") Long id) {
+
+		Optional<SiteUser> userOptional = userService.get(id);
+		SiteUser user = userOptional.get();
 		
-		SiteUser user = userService.get(id);
+		String firstname = user.getFirstname();
+		String surname = user.getSurname();
 		
 		ModelAndView modelAndView = showProfile(user);
 		
 		modelAndView.getModel().put("ownProfile", false);
+		modelAndView.getModel().put("firstname", firstname);
+		modelAndView.getModel().put("surname", surname);
 		
 		return modelAndView;
 	}
@@ -202,8 +214,9 @@ public class ProfileController {
 
 	@RequestMapping(value = "/profilephoto/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	ResponseEntity<InputStreamResource> servePhoto(@PathVariable("id") Long id) throws IOException {
-		SiteUser user = userService.get(id);
+	ResponseEntity<InputStreamResource> servePhoto(@PathVariable Long id) throws IOException {
+		Optional<SiteUser> userOptional = userService.get(id);
+		SiteUser user = userOptional.get();
 		Profile profile = profileService.getUserProfile(user);
 
 		Path photoPath = Paths.get(photoUploadDirectory, "default", "avatar.jpg");

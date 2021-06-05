@@ -12,12 +12,13 @@
 </div>
 
 <c:url var="searchUrl" value="/search?s=${s}" />
-
+<c:url var="img" value="/img" />
 
 <c:forEach var="result" items="${results}">
 
 	<c:url var="profilePhoto" value="/profilephoto/${result.userId}" />
 	<c:url var="profileLink" value="/profile/${result.userId}" />
+	<c:url var="chatviewLink" value="/chatview/${result.userId}" />
 
 	<div class="row person-row">
 		<div class="col-md-12">
@@ -41,6 +42,14 @@
 						<c:if test="${!status.last}"> | </c:if>
 					</c:forEach>
 				</div>
+				<div class="result-contact">
+					<a href="${chatviewLink}">
+						<img src="${img}/chatIcon.png" alt="chat" width="70" >
+					</a>
+				</div>
+				
+				
+				
 			</div>
 
 		</div>

@@ -1,6 +1,7 @@
 package com.guang.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.guang.model.dto.SpringUser;
 import com.guang.model.entity.SiteUser;
 import com.guang.model.repository.UserDao;
 
@@ -45,20 +47,30 @@ public class UserService implements UserDetailsService {
 		
 		List<GrantedAuthority> auth = AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRole());
 		
+		String firstname = user.getFirstname();
 		String password = user.getPassword();
 		
-		return new User(email, password, auth);
+		return new SpringUser(firstname,email, password, auth);
 	}
 
-
-
+	
 	public SiteUser get(String email) {
 		return userDao.findByEmail(email);
 	}
 
+	public Optional<SiteUser> get(Long id) {
+		return userDao.findById(id);
+	}
+
+	
 
 
-	public SiteUser get(Long id) {
-		return userDao.findById(id).get();
+	public String getUserName(Long chatWithUserID) {
+		
+		Optional<SiteUser> userOptional = userDao.findById(chatWithUserID);
+		SiteUser user = userOptional.get();
+		
+		return user.getFirstname()+" "+user.getSurname();
+		
 	}
 }

@@ -1,5 +1,4 @@
-package com.guang.security;
-
+package com.guang.configuration;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,12 +52,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/viewstatus")
 				.hasRole("ADMIN")
 				.antMatchers(
+						"/webjars/**",
+						"/chat/**",
 						"/profile",
 						"/profile/*",
 						"/edit-profile-about",
 						"/upload-profile-photo",
 						"/save-interest",
-						"/delete-interest"
+						"/delete-interest",
+						"/chatview/*"
 						)
 				.authenticated()
 				.anyRequest()
@@ -66,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.formLogin()
 				.loginPage("/login")
-				.defaultSuccessUrl("/")
+				.defaultSuccessUrl("/",true)
 				.permitAll()
 				.and()
 			.logout()
