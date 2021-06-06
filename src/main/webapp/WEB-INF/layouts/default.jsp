@@ -61,6 +61,10 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="${contextRoot}/about">About</a>
         </li>
+        
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="${contextRoot}/messages?p=1">Your Messages</a>
+        </li>
    
         
         <li class="nav-item">
@@ -74,13 +78,19 @@
         <button id="searchButton" class="myButton" type="submit" >Search</button>
       </form>
       </div>
+
+      
       
        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  
 	  	 
 	  	 <sec:authorize access="isAuthenticated()">
 	  	 
 	  	 
 	  	 <li><a href="${contextRoot}/profile"><sec:authentication property="principal.firstname" />'s Profile</a></li>
+        	 
+        	 
+        	 <sec:authorize access="hasRole('ADMIN')">
         	 
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -94,12 +104,16 @@
         	  </ul>
       	  </li>
 		  	 
+		  	 </sec:authorize>
+		  	 
+		  	 
 		  	   <c:url var="logoutLink" value="/logout" />
 				<form id="logoutForm" method="post" action="${logoutLink}">
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<button class="myButton" type="submit" >Logout</button>
 				</form>
+	  	 
 	  	 
 	  	 </sec:authorize>
 	  	 
@@ -121,7 +135,6 @@
 	</div>
   
   	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
 	<script src="${contextRoot}/js/bootstrap.min.js"></script>
 	
