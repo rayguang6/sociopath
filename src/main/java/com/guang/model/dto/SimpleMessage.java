@@ -1,34 +1,54 @@
 package com.guang.model.dto;
-
 import java.util.Date;
 
-public class SimpleMessage {
+import com.guang.model.entity.Message;
 
+public class SimpleMessage {
+	private Long id;
 	private String from;
 	private String text;
 	private Date sent;
 	private Long fromUserId;
 	private Boolean isReply;
-	
-	public SimpleMessage() {
-		
-	}
+
 	
 	public SimpleMessage(String text) {
 		this.text = text;
 		this.sent = new Date();
 	}
-
-	public SimpleMessage(String from, String text, Date sent, Long fromUserId) {
-		super();
-		this.from = from;
+	
+	public SimpleMessage() {
+		
+	}
+	
+	public SimpleMessage(Message m, Boolean isReply) {
+		this.from = m.getFromUser().getFirstname() + " " + m.getFromUser().getSurname();
+		this.text = m.getText();
+		this.sent = m.getSent();
+		this.fromUserId = m.getFromUser().getId();
+		this.isReply = isReply;
+		this.id = m.getId();
+	}
+	
+	public SimpleMessage(Date sent, Long fromUserId, String from, String text) {
 		this.text = text;
+		this.from = from;
 		this.sent = sent;
 		this.fromUserId = fromUserId;
 	}
 
 	public String getFrom() {
 		return from;
+	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setFrom(String from) {
@@ -72,8 +92,6 @@ public class SimpleMessage {
 		return "SimpleMessage [from=" + from + ", text=" + text + ", sent=" + sent + ", fromUserId=" + fromUserId
 				+ ", isReply=" + isReply + "]";
 	}
-	
-	
 	
 	
 }

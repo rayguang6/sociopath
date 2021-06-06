@@ -219,7 +219,7 @@ public class ProfileController {
 		SiteUser user = userOptional.get();
 		Profile profile = profileService.getUserProfile(user);
 
-		Path photoPath = Paths.get(photoUploadDirectory, "default", "avatar.jpg");
+		Path photoPath = Paths.get(photoUploadDirectory, "default", "avatar.png");
 
 		if (profile != null && profile.getPhoto(photoUploadDirectory) != null) {
 			photoPath = profile.getPhoto(photoUploadDirectory);

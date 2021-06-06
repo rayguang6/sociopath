@@ -9,7 +9,6 @@
 
 		<div class="message">
 			<c:out value="${message}" />
-			<c:out value="${username}"></c:out>
 		</div>
 
 	</div>

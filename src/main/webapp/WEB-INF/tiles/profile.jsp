@@ -191,7 +191,7 @@
 
 			<div class="profile-image">
 				<div>
-					<img id="profilePhotoImage" src="${profilePhoto}" />
+					<img id="profilePhotoImage" src="${profilePhoto}" width="70"/>
 				</div>
 				<div class="text-center">
 					<c:if test="${ownProfile == true}">

@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="/WEB-INF/tiles/chatviewscript.jsp" %>
 
 <div class="row">
 	<div class="col-md-12">
 
-	<h2><c:out value="${thisUserID}"></c:out></h2>
-	<h2><c:out value="${chatWithUserID}"></c:out></h2>
-	<h2><c:out value="${chatWithUserName}"></c:out></h2>
-	
 		<div class="panel panel-default">
 
 			<div class="panel panel-heading">
@@ -20,7 +17,7 @@
 				<div id="chat-message-view">
 					
 					<div id="chat-message-previous">
-						<a href="#">View older messages</a>
+						<a id="chat-older-messages" href="#">View older messages</a>
 					</div>
 				
 				
@@ -47,4 +44,3 @@
 
 
 </div>
-

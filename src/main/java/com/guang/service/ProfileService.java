@@ -1,5 +1,6 @@
 package com.guang.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,7 @@ public class ProfileService {
 		profileDao.save(profile);
 	}
 	
-	
 	public Profile getUserProfile(SiteUser user) {
 		return profileDao.findByUser(user);
 	}
-	
-	
-	
-	
 }

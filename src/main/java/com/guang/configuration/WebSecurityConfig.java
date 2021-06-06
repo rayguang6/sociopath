@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.guang.service.UserService;
 
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -60,7 +61,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/upload-profile-photo",
 						"/save-interest",
 						"/delete-interest",
-						"/chatview/*"
+						"/conversation/*",
+						"/chatview/*",
+						"/messages",
+						"/markread"
 						)
 				.authenticated()
 				.anyRequest()
@@ -68,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.formLogin()
 				.loginPage("/login")
-				.defaultSuccessUrl("/",true)
+				.defaultSuccessUrl("/", true)
 				.permitAll()
 				.and()
 			.logout()
@@ -83,8 +87,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// @formatter:off
 		auth
 			.inMemoryAuthentication()
-			.withUser("john")
-			.password("hello")
+			.withUser("guang")
+			.password("guang")
 			.roles("USER");
 		
 		// @formatter:on
