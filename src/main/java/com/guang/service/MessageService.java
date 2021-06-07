@@ -26,14 +26,14 @@ public class MessageService {
 		messageDao.save(new Message(fromUser, toUser, text));
 	}
 	
-	public List<SimpleMessage> fetchConversation(Long fromUserId, Long toUserId, int page) {
-		
-		PageRequest request = PageRequest.of(page, 12);
-		
-		Slice<Message> conversation =messageDao.fetchConversation(toUserId, fromUserId, request);
-		
-		return conversation.map(m -> new SimpleMessage(m, m.getFromUser().getId().compareTo(toUserId) == 0)).getContent();
-	}
+//	public List<SimpleMessage> fetchConversation(Long fromUserId, Long toUserId, int page) {
+//		
+//		PageRequest request = PageRequest.of(page, 12);
+//		
+//		Slice<Message> conversation =messageDao.fetchConversation(toUserId, fromUserId, request);
+//		
+//		return conversation.map(m -> new SimpleMessage(m, m.getFromUser().getId().compareTo(toUserId) == 0)).getContent();
+//	}
 
 	public Page<SimpleMessage> fetchMessageListPage(Long toUserId, int pageNumber) {
 		

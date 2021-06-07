@@ -3,54 +3,36 @@ package com.guang.model.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.TargetNode;
 
-@Entity
-@Table(name = "messages")
+
+
+
+@Node(labels = {"messages"})
 public class Message {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@GeneratedValue
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "from_user", nullable = false)
+	@TargetNode
 	private SiteUser fromUser;
 
-	@ManyToOne
-	@JoinColumn(name = "to_user", nullable = false)
+	@TargetNode
 	private SiteUser toUser;
 
-	@Column(name = "message_text", length = 1024, nullable = false)
 	String text;
 
-	@Column(name = "is_read", nullable = false)
 	Boolean read;
 
-	@Column(name = "sent")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date sent;
 
 	public Message() {
 
 	}
 
-	@PrePersist
-	protected void onCreate() {
-		if (sent == null) {
-			sent = new Date();
-		}
-	}
 
 	public Message(SiteUser fromUser, SiteUser toUser, String text) {
 		super();

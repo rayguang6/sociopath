@@ -2,44 +2,33 @@ package com.guang.model.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.repository.Temporal;
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.Property;
+import org.springframework.data.neo4j.core.support.DateLong;
+import org.springframework.data.neo4j.core.support.DateString;
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
-@Table(name = "status_update")
+
+@Node(labels = "status_update")
 public class StatusUpdate {
 
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 
-	@Size(min=5, max=255, message="{addstatus.text.size}")
-	@Column(name = "text")
 	private String text;
 
-	@Column(name = "added")
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss aa")
+	@Property(name="added")
+	@DateTimeFormat(pattern="yyyy/MM/dd hh:mm:ss")
 	private Date added;
 
-	@PrePersist
-	protected void onCreate() {
-		if (added == null) {
-			added = new Date();
-		}
-	}
-	
 	public StatusUpdate() {
 		
 	}

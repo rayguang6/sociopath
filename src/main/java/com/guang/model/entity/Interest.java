@@ -1,22 +1,16 @@
 package com.guang.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
 
-@Entity
-@Table(name = "interests")
+@Node(labels = {"interests"})
 public class Interest implements Comparable<Interest> {
 
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 
-	@Column(name = "interest_name", unique = true, length = 25)
 	private String name;
 
 	public Interest() {

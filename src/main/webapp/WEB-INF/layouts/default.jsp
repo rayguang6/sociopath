@@ -87,7 +87,7 @@
 	  	 <sec:authorize access="isAuthenticated()">
 	  	 
 	  	 
-	  	 <li><a href="${contextRoot}/profile"><sec:authentication property="principal.firstname" />'s Profile</a></li>
+	  	 <li><a href="${contextRoot}/profile" class="profileName"><sec:authentication property="principal.firstname" />'s Profile</a></li>
         	 
         	 
         	 <sec:authorize access="hasRole('ADMIN')">

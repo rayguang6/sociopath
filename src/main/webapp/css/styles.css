@@ -197,3 +197,15 @@ textarea {
 #profilePhotoImage{
 	width:100px;
 }
+
+.profileName{
+	text-decoration : none;
+	color:white;
+	margin:auto;
+}
+
+.profileName:hover{
+	text-decoration : none;
+	color:#888888;
+	margin:auto;
+}

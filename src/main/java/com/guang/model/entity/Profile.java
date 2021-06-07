@@ -4,54 +4,33 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.OrderColumn;
-import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
 
 import com.guang.model.dto.FileInfo;
 
 
-@Entity
-@Table(name = "profile")
+@Node(labels = {"profile"})
 public class Profile {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@GeneratedValue
 	private Long id;
 
-	@OneToOne(targetEntity = SiteUser.class)
-	@JoinColumn(name = "user_id", nullable = false)
+	
 	private SiteUser user;
 
-	@Column(name = "about", length = 5000)
-	@Size(max = 5000, message = "{editprofile.about.size}")
 	private String about;
 
-	@Column(name = "photo_directory", length = 10)
 	private String photoDirectory;
 
-	@Column(name = "photo_name", length = 10)
 	private String photoName;
 
-	@Column(name = "photo_extension", length = 5)
 	private String photoExtension;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="profile_interests", 
-	joinColumns={ @JoinColumn(name="profile_id") },
-	inverseJoinColumns = { @JoinColumn(name="interest_id") } )
-	@OrderColumn(name="display_order")
 	private Set<Interest> interests;
 	
 	public Profile() {

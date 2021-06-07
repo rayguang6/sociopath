@@ -69,17 +69,17 @@ public class ChatController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/conversation/{otherUserId}", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody
-	List<SimpleMessage> fetchConversation(@PathVariable("otherUserId") Long otherUserId,
-			@RequestBody ChatRequest request) {
-
-		SiteUser thisUser = util.getUser();
-
-		List<SimpleMessage> list = messageService.fetchConversation(thisUser.getId(), otherUserId, request.getPage());
-
-		return list;
-	}
+//	@RequestMapping(value = "/conversation/{otherUserId}", method = RequestMethod.POST, produces = "application/json")
+//	@ResponseBody
+//	List<SimpleMessage> fetchConversation(@PathVariable("otherUserId") Long otherUserId,
+//			@RequestBody ChatRequest request) {
+//
+//		SiteUser thisUser = util.getUser();
+//
+//		List<SimpleMessage> list = messageService.fetchConversation(thisUser.getId(), otherUserId, request.getPage());
+//
+//		return list;
+//	}
 
 	@RequestMapping("/chatview/{chatWithUserID}")
 	ModelAndView chatView(ModelAndView modelAndView, @PathVariable Long chatWithUserID) {
