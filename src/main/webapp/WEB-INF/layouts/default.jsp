@@ -40,7 +40,7 @@
 	<script src="/webjars/sockjs-client/sockjs.min.js"></script>
 	<script src="/webjars/stomp-websocket/stomp.min.js"></script>
 
-	<tiles:insertAttribute name="chatnotifications"></tiles:insertAttribute>
+	
 
   </head>
   <body>
@@ -87,10 +87,11 @@
 	  	 <sec:authorize access="isAuthenticated()">
 	  	 
 	  	 
-	  	 <li><a href="${contextRoot}/profile" class="profileName"><sec:authentication property="principal.firstname" />'s Profile</a></li>
+	  	 <!-- Profile Link -->
+	  	 
+       	 <li><a href="${contextRoot}/studentprofile" class="profileName">Student Profile</a></li>
         	 
-        	 
-        	 <sec:authorize access="hasRole('ADMIN')">
+       	 <sec:authorize access="hasRole('ADMIN')">
         	 
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -100,7 +101,14 @@
             <li><a class="dropdown-item" href="${contextRoot}/viewstatus">View status</a></li>
             <li><a class="dropdown-item" href="${contextRoot}/addstatus">Post Status</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Any Admin Action</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/GodAll">Any GOD Action</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/godViewProfile"">View All Student Profile</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/godAddStudent"">Create Student</a></li>
+            <li><a class="dropdown-item" href="#">Action 3</a></li>
+            <li><a class="dropdown-item" href="#">Action 4</a></li>
+            <li><a class="dropdown-item" href="#">Action 5</a></li>
+            <li><a class="dropdown-item" href="#">Action 6</a></li>
+                 
         	  </ul>
       	  </li>
 		  	 

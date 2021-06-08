@@ -12,7 +12,7 @@
 
 
 	<definition name="app.homepage" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/tiles/home.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/homepage.jsp" />
 	</definition>
 	
 	<definition name="app.about" extends="app.default">
@@ -39,38 +39,28 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/register.jsp" />
 	</definition>
 	
-	<definition name="app.verifyemail" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/tiles/verifyemail.jsp" />
-	</definition>
-	
-	<definition name="app.message" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/tiles/message.jsp" />
-	</definition>
 	
 	<definition name="app.exception" extends="app.default">
 		<put-attribute name="content" value="/WEB-INF/tiles/exception.jsp" />
 	</definition>
-	
-	<definition name="app.profile" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/tiles/profile.jsp" />
-	</definition>
-	
-	<definition name="app.checkmessages" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/tiles/checkmessages.jsp" />
-	</definition>
-	
-	<definition name="app.editProfileAbout" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/tiles/editprofileabout.jsp" />
-	</definition>
-	
-	<definition name="app.search" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/tiles/results.jsp" />
-	</definition>
-	
-	<definition name="chat.chatview" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/tiles/chatview.jsp" />
-		<put-attribute name="chatviewscript" value="/WEB-INF/tiles/chatviewscript.jsp" />
-	</definition>
+
+	 <definition name="app.studentprofile" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/tiles/studentprofile.jsp" />
+	 </definition>
+	 
+	 
+	 <!-- God Action JSP -->
+	 <definition name="app.godViewProfile" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/godViewProfile.jsp" />
+	 </definition>
+	 
+	 <definition name="app.godAddStudent" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/godAddStudent.jsp" />
+	 </definition>
+	 
+	 <definition name="app.GodAll" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/GodAll.jsp" />
+	 </definition>
 	 
 	
 </tiles-definitions>

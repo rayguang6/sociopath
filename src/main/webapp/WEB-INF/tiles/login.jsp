@@ -27,7 +27,7 @@
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 					<div class="input-group">
-						<input type="text" name="username" placeholder="Username"
+						<input  type="text" id="usernameInput" name="username" placeholder="Username"
 							class="form-control" />
 					</div>
 
@@ -50,3 +50,10 @@
 
 
 </div>
+
+
+<script>
+document.onload = function() {
+ document.getElementById('#usernameInput').autofocus();
+};
+</script>

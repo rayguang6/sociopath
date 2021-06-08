@@ -7,16 +7,16 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.3</version>
 	</parent>
-	
+
 	<properties>
 		<java.version>1.8</java.version>
 		<tiles.version>3.0.5</tiles.version>
 	</properties>
-	
+
 	<groupId>com.guang</groupId>
 	<artifactId>spring-boot-app</artifactId>
 	<version>1.0</version>
-		<dependencies>
+	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -92,10 +92,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-neo4j</artifactId>
 		</dependency>
-		</dependencies>
-	
+	</dependencies>
+
 	<packaging>war</packaging>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -107,6 +107,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	
+
+
 </project>
