@@ -39,7 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/expiredtoken",
 						"/verifyemail",
 						"/confirmregister",
-						"/profilephoto/*"
+						"/profilephoto/*",
+						"/addRelation",
+						"/addRelation/*"
 						)
 				.permitAll()
 				.antMatchers(
@@ -53,7 +55,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/viewstatus",
 						"/GodAll",
 						"/godDelete",
-						"/godDeleteStudent")
+						"/godDeleteStudent",
+						"/addRelation",
+						"/addRelation/*",
+						"/testCreate",
+						"/testCreate/*",
+						"/testForm",
+						"/testForm/*",
+						"/displayReputation"
+						)
 				.hasRole("ADMIN")
 				.antMatchers(
 						"/webjars/**",
@@ -68,7 +78,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/conversation/*",
 						"/chatview/*",
 						"/messages",
-						"/markread"
+						"/markread",
+						"/addRelation",
+						"/addRelation/*"
 						)
 				.authenticated()
 				.anyRequest()

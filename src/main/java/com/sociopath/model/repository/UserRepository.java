@@ -14,4 +14,5 @@ public interface UserRepository extends Neo4jRepository<Users, Long> {
 	@Query("MATCH (n:Users) WHERE n.username = $username DELETE n")
 	void deleteByUsername(String username);
 	
+	
 }

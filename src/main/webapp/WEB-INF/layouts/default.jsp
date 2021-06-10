@@ -102,9 +102,9 @@
             <li><a class="dropdown-item" href="${contextRoot}/addstatus">Post Status</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="${contextRoot}/GodAll">Any GOD Action</a></li>
-            <li><a class="dropdown-item" href="${contextRoot}/godViewProfile"">View All Student Profile</a></li>
-            <li><a class="dropdown-item" href="${contextRoot}/godAddStudent"">Create Student</a></li>
-            <li><a class="dropdown-item" href="#">Action 3</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/testCreate">testCreate</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/addRelation">Create relation</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/displayReputation">display REputation</a></li>
             <li><a class="dropdown-item" href="#">Action 4</a></li>
             <li><a class="dropdown-item" href="#">Action 5</a></li>
             <li><a class="dropdown-item" href="#">Action 6</a></li>

@@ -61,6 +61,20 @@
 	 <definition name="app.GodAll" extends="app.default">
 		<put-attribute name="content" value="/WEB-INF/god/GodAll.jsp" />
 	 </definition>
+
+	 <definition name="app.addRelation" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/addRelation.jsp" />
+	 </definition>
 	 
-	
+	 <definition name="app.testCreate" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/testCreate.jsp" />
+	 </definition>
+	 
+	 <definition name="app.testForm" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/testForm.jsp" />
+	 </definition>
+	 
+	 <definition name="app.displayReputation" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/displayReputation.jsp" />
+	 </definition>
 </tiles-definitions>

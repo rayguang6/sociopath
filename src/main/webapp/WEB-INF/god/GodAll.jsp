@@ -8,8 +8,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
-
 <h1>God View Profile</h1>
 
 
@@ -33,7 +31,7 @@
 					<c:out value="id: ${student.id}"></c:out>
 					<c:out value="Rep: ${student.reputation}"></c:out>
 					<c:out value="${student.divingrate}"></c:out>
-					
+					<c:out value="${student.friendList}"></c:out>
 					
 					<a onclick="confirm('Sure Want Delete?')" href="${deleteStudent}">Delete</a>
 				</div>

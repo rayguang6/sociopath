@@ -30,9 +30,6 @@
 					</c:otherwise>
 				</c:choose>
 				
-				
-				
-				
 				<!-- Listing Student Details -->
 				<br>${student.id} id 
 				<br>${student.user} user
