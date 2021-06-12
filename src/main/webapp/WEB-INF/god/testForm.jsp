@@ -11,6 +11,7 @@
 
 <h1>Test Form</h1>
 
+<p>Test Getting Student id</p>
 
 <form method="post" action="testForm">
 	

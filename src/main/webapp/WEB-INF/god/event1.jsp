@@ -1,5 +1,4 @@
 
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,33 +7,42 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<h1>Event 1  Teach Stranger</h1>
 
-
-<h1>God Add Relation</h1>
-
-
-<form method="post" action="addRelation">
+<form method="post" action="event1">
 	
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	
-		<label for="student1">From Student:</label>
-		<select id="student1" name="student1">
+		<label for="mentee"> Student:</label>
+		<select id="mentee" name="mentee">
 		  
 		  	<c:forEach var="student" items="${students}">
 		 		 <option value="${student.username}">${student.username}</option>
 	 		 </c:forEach>
+	 		 
 		</select>
 		
-		<label for="student2">To Student:</label>
-		<select id="student2" name="student2">
+		<br>
+		
+		<label for="mentor">Teacher :</label>
+		<select id="mentor" name="mentor">
 		  
 		  	<c:forEach var="student" items="${students}">
 		 		 <option value="${student.username}">${student.username}</option>
 	 		 </c:forEach>
+	 		 
 		</select>
+		
+		<br>
 	
-		<input type="text" name="rep_point" id="rep_point">
-	
+		<label for="rep_point">Teaching Experience: </label>
+		<select id="rep_point" name="rep_point">
+
+			<option value="10">Awesome🥰</option>
+	 		<option value="2">Too Bad 😔</option>
+	 		
+		</select>
+		
 		<input type="submit" value="Submit">
 	
 </form>

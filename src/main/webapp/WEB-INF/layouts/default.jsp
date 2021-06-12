@@ -46,7 +46,6 @@
   <body>
 
     
-    
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     
   <div class="container-fluid">
@@ -101,13 +100,24 @@
             <li><a class="dropdown-item" href="${contextRoot}/viewstatus">View status</a></li>
             <li><a class="dropdown-item" href="${contextRoot}/addstatus">Post Status</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="${contextRoot}/GodAll">Any GOD Action</a></li>
-            <li><a class="dropdown-item" href="${contextRoot}/testCreate">testCreate</a></li>
-            <li><a class="dropdown-item" href="${contextRoot}/addRelation">Create relation</a></li>
-            <li><a class="dropdown-item" href="${contextRoot}/displayReputation">display REputation</a></li>
-            <li><a class="dropdown-item" href="#">Action 4</a></li>
-            <li><a class="dropdown-item" href="#">Action 5</a></li>
-            <li><a class="dropdown-item" href="#">Action 6</a></li>
+            
+            <li><a class="dropdown-item" href="${contextRoot}/godDashboard">GOD Dashboard</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/godCreateRep">Create Rep</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/godCreateFriend">Create Friend</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/displayReputation">Display Reputation</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/displayFriend">Display Friend</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/testForm">testForm</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/testForm2">testForm 2 </a></li>
+            
+            <li><hr class="dropdown-divider"></li>
+                                
+            <li><a class="dropdown-item" href="${contextRoot}/event1">Event 1</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/event2">Event 2</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/event3">Event 3</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/event4">Event 4</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/event5">Event 5</a></li>
+            <li><a class="dropdown-item" href="${contextRoot}/event6">Event 6</a></li>
+  
                  
         	  </ul>
       	  </li>
@@ -138,10 +148,12 @@
   
 </nav>
 
-	<div class="container">
+<div class="container">
+	
+	<div >
 		<tiles:insertAttribute name="content" />
 	</div>
-  
+</div>
   	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 
 	<script src="${contextRoot}/js/bootstrap.min.js"></script>
@@ -151,6 +163,6 @@
 			connectionManager.connect();
 		</script>
 	</sec:authorize>
-	
+
   </body>
 </html>

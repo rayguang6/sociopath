@@ -68,7 +68,7 @@ public class UserService implements UserDetailsService {
 		return userRepository.findByUsername(username);
 	}
 
-	public void godDeleteStudent(String username) {
+	public void deleteStudent(String username) {
 		userRepository.deleteByUsername(username);
 	}
 }

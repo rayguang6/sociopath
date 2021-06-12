@@ -40,8 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/verifyemail",
 						"/confirmregister",
 						"/profilephoto/*",
-						"/addRelation",
-						"/addRelation/*"
+						"/sidebar"
 						)
 				.permitAll()
 				.antMatchers(
@@ -53,16 +52,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/editstatus",
 						"/deletestatus",
 						"/viewstatus",
-						"/GodAll",
+						"/godDashboard",
 						"/godDelete",
 						"/godDeleteStudent",
-						"/addRelation",
-						"/addRelation/*",
-						"/testCreate",
-						"/testCreate/*",
+						"/godCreateRep",
+						"/godCreateFriend",
 						"/testForm",
-						"/testForm/*",
-						"/displayReputation"
+						"/displayReputation",
+						"/displayFriend",
+						"/event1",
+						"/event2",
+						"/event3",
+						"/event4",
+						"/event5",
+						"/event6",
+						"/preEvent6",
+						"/resultEvent6",
+						"/resultEvent6/*",
+						"/resultEvent3",
+						"/resultEvent3/*",
+						"/resultEvent4",
+						"/resultEvent5",
+						"/resultEvent5/*"
 						)
 				.hasRole("ADMIN")
 				.antMatchers(
@@ -78,9 +89,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/conversation/*",
 						"/chatview/*",
 						"/messages",
-						"/markread",
-						"/addRelation",
-						"/addRelation/*"
+						"/markread"
+				
 						)
 				.authenticated()
 				.anyRequest()

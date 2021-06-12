@@ -8,8 +8,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>God View Profile</h1>
+<h1>Display All Reputations</h1>
 
+
+<h5>CCF 的 Friends</h5>
+
+<c:forEach var="friend" items="${friends}">
+
+	<c:out value="  ${friend.username}   "></c:out>
+
+</c:forEach>
 
 <c:forEach var="student" items="${students}">
 
@@ -27,8 +35,7 @@
 					<c:out value=" in= ${student.indeg} "></c:out>
 					<c:out value=" out= ${student.outdeg} "></c:out>
 					<c:out value="   ${student.reputationList}"></c:out>
-					
-					
+
 										
 					<a onclick="confirm('Sure Want Delete?')" href="${deleteStudent}">Delete</a>
 				</div>

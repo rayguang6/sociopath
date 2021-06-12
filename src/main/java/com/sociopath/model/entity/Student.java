@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
@@ -16,6 +17,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 
 import com.sociopath.model.dto.FileInfo;
 import com.sociopath.model.entity.Student;
+import com.sociopath.model.repository.StudentRepository;
 
 @Node(labels = { "Student" })
 public class Student<T extends Comparable<T>, N extends Comparable<N>> implements Comparable<Student> {
@@ -23,6 +25,7 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 
 //	@OneToOne(targetEntity = Users.class)
 //	@JoinColumn(name = "user_id", nullable = false)
@@ -46,27 +49,29 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 //	@OrderColumn(name="display_order")
 //	private Set<Interest> interests;
 
-	T vertexInfo;
+	public T vertexInfo;
 	int reputation;
 	int divingrate;
-	int average_lunchStart;
-	int average_lunchPeriod;
-	int end_time;
+	public int average_lunchStart;
+	public int average_lunchPeriod;
+	public int end_time;
 	ArrayList<Integer> lunchStart = new ArrayList<>();
-	ArrayList<Integer> lunchPeriod = new ArrayList<>();
+	public ArrayList<Integer> lunchPeriod = new ArrayList<>();
 	int lastCheck ;
 	public int outdeg;
 	public int indeg;
 	/// Edge<T,N> relativeRep; 暂时搬去下面
 	Student<T, N> nextVertex;
 	
-	
-	public ArrayList<T> friendList = new ArrayList<>(); // this is to show friend list only
+	public ArrayList<Student> friendList = new ArrayList<>(); // this is to show friend list only
 
 	// relationship
 	@Relationship(type = "REPUTATIONS", direction = Relationship.Direction.OUTGOING)
 	public List<ReputationRelation> reputationList = new ArrayList<>();;
 
+	//Friend 
+	@Relationship(type = "FRIENDS", direction = Relationship.Direction.OUTGOING)
+	private List<Student> friendshipList = new ArrayList<>() ;
 
 	// constructor
 
@@ -269,7 +274,6 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 //	}
 	
 	
-	
 	//Other Getter & Setter
 
 	public int getLastCheck() {
@@ -371,15 +375,24 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 		this.nextVertex = nextVertex;
 	}
 
-	public ArrayList<T> getFriendList() {
+
+
+
+	public ArrayList<Student> getFriendList() {
 		return friendList;
 	}
 
-	public void setFriendList(ArrayList<T> friendList) {
+	public void setFriendList(ArrayList<Student> friendList) {
 		this.friendList = friendList;
 	}
 
+	public List<Student> getFriendshipList() {
+		return friendshipList;
+	}
 
+	public void setFriendshipList(List<Student> friendshipList) {
+		this.friendshipList = friendshipList;
+	}
 
 	@Override
 //	public String toString() {
@@ -390,6 +403,8 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 	public String toString() {
 		return vertexInfo + "(Reputation : " +reputationList+ ')';
 	}
+	
+	
 
 	@Override
 	public int compareTo(Student o) {

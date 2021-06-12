@@ -7,9 +7,9 @@
 <tiles-definitions>
 	<definition name="app.default" template="/WEB-INF/layouts/default.jsp">
 		<put-attribute name="title" value="Spring Boot Demo" />
+		<put-attribute name="body" value="/WEB-INF/tiles/sidebar.jsp" />
 		<put-attribute name="chatnotifications" value="/WEB-INF/tiles/chatnotifications.jsp" />
 	</definition>
-
 
 	<definition name="app.homepage" extends="app.default">
 		<put-attribute name="content" value="/WEB-INF/tiles/homepage.jsp" />
@@ -49,25 +49,19 @@
 	 </definition>
 	 
 	 
-	 <!-- God Action JSP -->
-	 <definition name="app.godViewProfile" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/god/godViewProfile.jsp" />
-	 </definition>
-	 
-	 <definition name="app.godAddStudent" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/god/godAddStudent.jsp" />
-	 </definition>
-	 
-	 <definition name="app.GodAll" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/god/GodAll.jsp" />
+	 <!-- God Action JSP-->
+	 <!-- ####################################################################################-->
+
+	 <definition name="app.godDashboard" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/godDashboard.jsp" />
 	 </definition>
 
-	 <definition name="app.addRelation" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/god/addRelation.jsp" />
+	 <definition name="app.godCreateRep" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/godCreateRep.jsp" />
 	 </definition>
 	 
-	 <definition name="app.testCreate" extends="app.default">
-		<put-attribute name="content" value="/WEB-INF/god/testCreate.jsp" />
+	 <definition name="app.godCreateFriend" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/godCreateFriend.jsp" />
 	 </definition>
 	 
 	 <definition name="app.testForm" extends="app.default">
@@ -77,4 +71,43 @@
 	 <definition name="app.displayReputation" extends="app.default">
 		<put-attribute name="content" value="/WEB-INF/god/displayReputation.jsp" />
 	 </definition>
+	 
+	 <definition name="app.displayFriend" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/displayFriend.jsp" />
+	 </definition>
+	 
+	 <definition name="app.event1" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/event1.jsp" />
+	 </definition>
+	 <definition name="app.event2" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/event2.jsp" />
+	 </definition>
+	 <definition name="app.event3" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/event3.jsp" />
+	 </definition>
+	 <definition name="app.event4" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/event4.jsp" />
+	 </definition>
+	 <definition name="app.event5" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/event5.jsp" />
+	 </definition>
+	 <definition name="app.event6" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/event6.jsp" />
+	 </definition>
+	 <definition name="app.preEvent6" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/preEvent6.jsp" />
+	 </definition>
+	 <definition name="app.resultEvent3" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/resultEvent3.jsp" />
+	 </definition>
+	 <definition name="app.resultEvent4" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/resultEvent4.jsp" />
+	 </definition>
+	 <definition name="app.resultEvent5" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/resultEvent5.jsp" />
+	 </definition>
+	 <definition name="app.resultEvent6" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/god/resultEvent6.jsp" />
+	 </definition>
+	 
 </tiles-definitions>
