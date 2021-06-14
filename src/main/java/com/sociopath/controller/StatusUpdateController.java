@@ -28,7 +28,7 @@ public class StatusUpdateController {
 		
 		modelAndView.getModel().put("statusUpdate", statusUpdate);
 		
-		modelAndView.setViewName("app.editStatus");
+		modelAndView.setViewName("editstatus");
 		
 		return modelAndView;
 	}
@@ -36,7 +36,7 @@ public class StatusUpdateController {
 	@RequestMapping(value="/editstatus", method=RequestMethod.POST)
 	ModelAndView editStatus(ModelAndView modelAndView, @Valid StatusUpdate statusUpdate, BindingResult result) {
 		
-		modelAndView.setViewName("app.editStatus");
+		modelAndView.setViewName("editstatus");
 		
 		if(!result.hasErrors()) {
 			statusUpdateService.save(statusUpdate);
@@ -64,7 +64,7 @@ public class StatusUpdateController {
 
 		modelAndView.getModel().put("page", page);
 		
-		modelAndView.setViewName("app.viewStatus");
+		modelAndView.setViewName("viewstatus");
 		
 		return modelAndView;
 	}
@@ -72,7 +72,7 @@ public class StatusUpdateController {
 	@RequestMapping(value= "/addstatus", method=RequestMethod.GET)
 	ModelAndView addStatus(ModelAndView modelAndView, @ModelAttribute("statusUpdate") StatusUpdate statusUpdate) {
 		
-		modelAndView.setViewName("app.addStatus");
+		modelAndView.setViewName("addstatus");
 		
 		StatusUpdate latestStatusUpdate = statusUpdateService.getLatest();
 		
@@ -84,7 +84,7 @@ public class StatusUpdateController {
 	@RequestMapping(value = "/addstatus", method = RequestMethod.POST)
 	ModelAndView addStatus(ModelAndView modelAndView, @Valid StatusUpdate statusUpdate, BindingResult result) {
 
-		modelAndView.setViewName("app.addStatus");
+		modelAndView.setViewName("addstatus");
 		
 		if(!result.hasErrors()) {
 			statusUpdateService.save(statusUpdate);

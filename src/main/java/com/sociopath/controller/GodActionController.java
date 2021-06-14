@@ -47,7 +47,7 @@ public class GodActionController {
 		
 		List<Student> students = studentService.getAllStudents();
 		modelAndView.getModel().put("students", students);
-		modelAndView.setViewName("app.godDashboard");
+		modelAndView.setViewName("/god/godDashboard");
 
 		return modelAndView;
 	}
@@ -56,7 +56,7 @@ public class GodActionController {
 	//Create New User and StudentProfile
 	@RequestMapping(value = "/godDashboard", method = RequestMethod.POST)
 	ModelAndView addStudent(ModelAndView modelAndView, @Valid Users user, BindingResult result) {
-		modelAndView.setViewName("app.godDashboard");
+		modelAndView.setViewName("/god/godDashboard");
 
 		if (!result.hasErrors()) {
 			userService.register(user); // first, register the user
@@ -87,7 +87,7 @@ public class GodActionController {
 
 		List<Student> students = studentService.getAllStudents();
 		modelAndView.getModel().put("students", students);
-		modelAndView.setViewName("app.godCreateRep");
+		modelAndView.setViewName("god/godCreateRep");
 
 		return modelAndView;
 	}
@@ -108,7 +108,7 @@ public class GodActionController {
 
 		List<Student> students = studentService.getAllStudents();
 		modelAndView.getModel().put("students", students);
-		modelAndView.setViewName("app.godCreateFriend");
+		modelAndView.setViewName("god/godCreateFriend");
 		return modelAndView;
 	}
 	
@@ -125,7 +125,7 @@ public class GodActionController {
 	
 	@RequestMapping(value = "/testForm")
 	ModelAndView testForm(ModelAndView modelAndView) {
-		modelAndView.setViewName("app.testForm");
+		modelAndView.setViewName("god/testForm");
 		return modelAndView;
 	}
 	
@@ -150,7 +150,7 @@ public class GodActionController {
 		
 		mav.getModel().put("students", students);
 		mav.getModel().put("friends", friends);
-		mav.setViewName("app.displayReputation");
+		mav.setViewName("/god/displayReputation");
 
 		return mav;
 	}
@@ -177,10 +177,49 @@ public class GodActionController {
 		
 		mav.getModel().put("friendMaps", friendMaps);
 		
-		mav.setViewName("app.displayFriend");
+		mav.setViewName("/god/displayFriend");
 
 		return mav;
 	}
+	
+//	@RequestMapping(value = "/leaderboard")
+//	ModelAndView reputationBoard(ModelAndView mav) {
+//
+//		List<Student> students = studentService.getAllStudents();
+//		
+//		Map<String, Integer> reputationBoards = studentService.reputationBoard();
+//		
+//		Map<Student, List<Student>> friendMaps = studentService.getAllFriends();
+//		
+//		mav.getModel().put("students", students);
+//		mav.getModel().put("reputationBoards", reputationBoards);
+//		
+//		mav.getModel().put("friendMaps", friendMaps);
+//		
+//		mav.setViewName("/leaderboard");
+//
+//		return mav;
+//	}
+	
+	@RequestMapping(value = "/leaderboard")
+	ModelAndView reputationBoard(ModelAndView mav) {
+
+		List<Student> students = studentService.getAllStudents();
+		
+		Map<String, Integer> reputationBoards = studentService.reputationBoard();
+		
+		Map<Student, List<Student>> friendMaps = studentService.getAllFriends();
+		
+		mav.getModel().put("students", students);
+		mav.getModel().put("reputationBoards", reputationBoards);
+		
+		mav.getModel().put("friendMaps", friendMaps);
+		
+		mav.setViewName("/leaderboard");
+
+		return mav;
+	}
+	
 	
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -195,7 +234,7 @@ public class GodActionController {
 
 		List<Student> students = studentService.getAllStudents();
 		modelAndView.getModel().put("students", students);
-		modelAndView.setViewName("app.event1");
+		modelAndView.setViewName("/god/event1");
 
 		return modelAndView;
 	}
@@ -217,7 +256,7 @@ public class GodActionController {
 
 		List<Student> students = studentService.getAllStudents();
 		modelAndView.getModel().put("students", students);
-		modelAndView.setViewName("app.event2");
+		modelAndView.setViewName("/god/event2");
 
 		return modelAndView;
 	}
@@ -240,7 +279,7 @@ public class GodActionController {
 
 		List<Student> students = studentService.getAllStudents();
 		modelAndView.getModel().put("students", students);
-		modelAndView.setViewName("app.event3");
+		modelAndView.setViewName("god/event3");
 
 		return modelAndView;
 	}
@@ -251,7 +290,7 @@ public class GodActionController {
 		ArrayList<String> lunchLists = studentService.haveLunch(s1, s2, day);
 		
 		modelAndView.getModel().put("lunchLists", lunchLists);
-		modelAndView.setViewName("app.resultEvent3");
+		modelAndView.setViewName("god/resultEvent3");
 		return modelAndView;
 	}
 	
@@ -263,7 +302,7 @@ public class GodActionController {
 
 		List<Student> students = studentService.getAllStudents();
 		modelAndView.getModel().put("students", students);
-		modelAndView.setViewName("app.event4");
+		modelAndView.setViewName("god/event4");
 
 		return modelAndView;
 	}
@@ -275,13 +314,15 @@ public class GodActionController {
 		List<String> bookResults = studentService.arrangeBook(books);
 		
 		
+		
 		modelAndView.getModel().put("books", books);
 		
 		modelAndView.getModel().put("bookResults", bookResults);
 		
-		modelAndView.setViewName("app.resultEvent4");
+		modelAndView.setViewName("/god/resultEvent4");
 		return modelAndView;
 	}
+	
 	
 	
 	/////////////////////////
@@ -291,7 +332,7 @@ public class GodActionController {
 
 		List<Student> students = studentService.getAllStudents();
 		modelAndView.getModel().put("students", students);
-		modelAndView.setViewName("app.event5");
+		modelAndView.setViewName("god/event5");
 
 		return modelAndView;
 	}
@@ -312,7 +353,7 @@ public class GodActionController {
 		modelAndView.getModel().put("friendMaps", friendMaps);		
 		modelAndView.getModel().put("results", results);
 		
-		modelAndView.setViewName("app.resultEvent5");
+		modelAndView.setViewName("god/resultEvent5");
 		return modelAndView;
 	}
 	
@@ -325,7 +366,7 @@ public class GodActionController {
 		modelAndView.getModel().put("friendMaps", friendMaps);
 		
 		
-		modelAndView.setViewName("app.resultEvent5");
+		modelAndView.setViewName("god/resultEvent5");
 
 		return modelAndView;
 	}
@@ -337,7 +378,7 @@ public class GodActionController {
 
 		List<Student> students = studentService.getAllStudents();
 		modelAndView.getModel().put("students", students);
-		modelAndView.setViewName("app.preEvent6");
+		modelAndView.setViewName("god/preEvent6");
 
 		return modelAndView;
 	}
@@ -347,7 +388,7 @@ public class GodActionController {
 		
 		modelAndView.getModel().put("numOfRelation", numOfRelation);
 				
-		modelAndView.setViewName("app.event6");
+		modelAndView.setViewName("god/event6");
 		return modelAndView;
 	}
 	
@@ -373,7 +414,7 @@ public class GodActionController {
 		modelAndView.getModel().put("friendshipLists", friendshipLists);    
 		
 		//################### TODO  :    Redirect and set result to result page
-		modelAndView.setViewName("app.resultEvent6");
+		modelAndView.setViewName("god/resultEvent6");
 		return modelAndView;
 	}
 	
@@ -382,7 +423,7 @@ public class GodActionController {
 
 		List<Student> students = studentService.getAllStudents();
 		modelAndView.getModel().put("students", students);
-		modelAndView.setViewName("app.resultEvent6");
+		modelAndView.setViewName("god/resultEvent6");
 
 		return modelAndView;
 	}

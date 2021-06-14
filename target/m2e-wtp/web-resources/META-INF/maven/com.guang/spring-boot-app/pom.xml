@@ -30,16 +30,7 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-core</artifactId>
-			<version>${tiles.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-jsp</artifactId>
-			<version>${tiles.version}</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -84,7 +75,7 @@
 			<artifactId>sockjs-client</artifactId>
 			<version>1.1.2</version>
 		</dependency>
-		<dependency>
+		<dependency> 
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-messaging</artifactId>
 		</dependency>
@@ -94,6 +85,8 @@
 			<version>2.5.0</version>
 			<type>module</type>
 		</dependency>
+		
+		
 	</dependencies>
 
 	<packaging>war</packaging>

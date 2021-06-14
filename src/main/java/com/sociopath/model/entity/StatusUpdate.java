@@ -6,7 +6,6 @@ import javax.persistence.Convert;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
-import org.apache.commons.beanutils.converters.DateConverter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;

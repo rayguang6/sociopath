@@ -24,23 +24,6 @@ public class App extends SpringBootServletInitializer {
 		return application.sources(App.class);
 	}
 	
-	@Bean
-	public TilesConfigurer tilesConfigurer() {
-		TilesConfigurer tilesConfigurer = new TilesConfigurer();
-		
-		String[] defs = {"/WEB-INF/tiles.xml"};
-		
-		tilesConfigurer.setDefinitions(defs);
-		
-		return tilesConfigurer;
-	}
-	
-	@Bean
-	public UrlBasedViewResolver tilesViewResolver() {
-		UrlBasedViewResolver tilesViewResolver = new UrlBasedViewResolver();
-		tilesViewResolver.setViewClass(TilesView.class);
-		return tilesViewResolver;
-	}
 	
 	@Bean
 	PasswordEncoder getEncoder() {

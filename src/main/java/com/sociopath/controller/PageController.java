@@ -32,14 +32,21 @@ public class PageController {
 		
 		modelAndView.getModel().put("statusUpdate", statusUpdate);
 		
-		modelAndView.setViewName("app.homepage");
+		modelAndView.setViewName("/dashboard");
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping("/about")
-	String about() {
-		return "app.about";
+	@RequestMapping("/dashboard")
+	ModelAndView dashboard(ModelAndView modelAndView) {
+		
+		StatusUpdate statusUpdate = statusUpdateService.getLatest();
+		
+		modelAndView.getModel().put("statusUpdate", statusUpdate);
+		
+		modelAndView.setViewName("/dashboard");
+		
+		return modelAndView;
 	}
 	
 	

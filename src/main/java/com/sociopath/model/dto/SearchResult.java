@@ -7,48 +7,74 @@ import java.util.Set;
 import com.sociopath.model.entity.Student;
 
 public class SearchResult {
-	private Long userId;
-	private String firstname;
-	private List<Student> repFriend;
-
-	public SearchResult(Student student) {
-		userId = student.getUser().getId();
-		firstname = student.getUser().getUsername();
-		repFriend = student.getReputationList();
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	
+	private Long id;
+	private String username;
+	
+	private String about;
+	
+	
+	
+	public SearchResult() {
+		super();
 	}
 
 
 
-	public List<Student> getRepFriend() {
-		return repFriend;
+	public SearchResult(Long id, String username,  String about) {
+		super();
+		this.id = id;
+		this.username = username;
+
+		this.about = about;
 	}
 
-	public void setRepFriend(List<Student> repFriend) {
-		this.repFriend = repFriend;
+
+
+	public Long getId() {
+		return id;
 	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+
+
+	public String getAbout() {
+		return about;
+	}
+
+
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "SearchResult [userId=" + userId + ", firstname=" + firstname +  ", repFriend="
-				+ repFriend + "]";
+		return "SearchResult [id=" + id + ", username=" + username + ", about=" + about + "]";
 	}
-
 	
-
+	
+	
+	
 }

@@ -83,6 +83,7 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 		reputation = 10 - (divingrate / 10);// if diving rate high, reputation low
 		if (reputation == 0)
 			reputation = 1;
+		this.about="";
 		
 	}
 
@@ -95,6 +96,7 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 	      if(reputation==0) reputation=1;
 	      lunchStart.add(setTime());
 	      lunchPeriod.add((int) (Math.random() * 56)+ 5);
+	      this.about="";
 	   }
 
 	public int setTime() {

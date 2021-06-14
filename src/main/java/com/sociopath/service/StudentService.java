@@ -4,10 +4,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
 import org.neo4j.driver.Driver;
@@ -50,7 +54,6 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 	
 	@Autowired
 	private ReputationRepository reputationRepository;
-	
 	
 	//////////////////////////////////////////////////////
 	///////////////   BASIC FUNCTIONS   //////////////////
@@ -117,6 +120,7 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
     public String getUsernameById(int id) {
     	return studentRepository.getVipUsernameById(id);
     }
+    
     
     public ArrayList<Integer> getFriends(int id){
 		return studentRepository.getFriendsIdListById(id);
@@ -315,6 +319,128 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 	
 	
 	
+	//get the reputations scoring board
+//		public Map<Student, Integer> reputationBoard() {
+//
+//		Map<Student, Integer> reputationBoard = new HashMap<>();
+//		
+//		List<Student> listOfStudents = getAllStudents();
+//		
+//		for (int i=0; i<listOfStudents.size(); i++) {
+//			
+//			Student thisStudent = listOfStudents.get(i);
+//			
+//			Integer sumOfRep = studentRepository.getMyPoint(thisStudent.getUsername());
+//			
+//			reputationBoard.put(thisStudent, sumOfRep);
+//			
+//		}
+//		
+//		return reputationBoard;
+//	}
+	
+	
+	//get the String rather than Object
+	public Map<String, Integer> reputationBoard() {
+
+	Map<String, Integer> reputationBoard = new HashMap<>();
+	
+	List<Student> listOfStudents = getAllStudents();
+	
+	for (int i=0; i<listOfStudents.size(); i++) {
+		
+		Student thisStudent = listOfStudents.get(i);
+		
+		String thisUsername = thisStudent.getUsername();
+		
+		Integer sumOfRep = studentRepository.getHisTotalPoint(thisUsername);
+		
+		reputationBoard.put(thisUsername, sumOfRep);
+		
+	}
+	
+	Map<String, Integer> sortedMap = ReverseSortByValue(reputationBoard);
+	
+	return sortedMap;
+}
+	
+	
+	
+////////////////////////////////////////////////////////////////////////////////
+		//!!!  Can't get multiple result from db even using hashmap...
+		
+	
+		//GET SORTED LEADERBOARD's username first
+//		public Map<String, Integer> getReputationRanking(){
+//			
+//			 Map<String, Integer> reputationMap = new HashMap<>();
+//			 
+//			 
+//			//first get the sorted list of username
+//			ArrayList<String> leaderboard = studentRepository.getReputationRanking();
+//			
+//			//then get their point one by one
+//			for (int i=0; i<leaderboard.size(); i++) {
+//				
+//				String thisStudent = leaderboard.get(i);
+//								
+//				Integer hisTotalPoint = studentRepository.getHisTotalPoint(thisStudent);
+//				
+//				
+//				reputationMap.put(thisStudent, hisTotalPoint);
+//				
+//			}
+//			
+//			return reputationMap;
+//		}
+	
+	
+		
+		
+		
+		//Sort The Leader Board Hashmap Using JAVA code
+		public static HashMap<String, Integer> sortByValue(Map<String, Integer> reputationBoard)
+	    {
+	        // Create a list from elements of HashMap
+	        List<Map.Entry<String, Integer> > list =
+	               new LinkedList<Map.Entry<String, Integer> >(reputationBoard.entrySet());
+	 
+	        // Sort the list
+	        Collections.sort(list, new Comparator<Map.Entry<String, Integer> >() {
+	            public int compare(Map.Entry<String, Integer> o1,
+	                               Map.Entry<String, Integer> o2)
+	            {
+	                return (o1.getValue()).compareTo(o2.getValue());
+	            }
+	        });
+	         
+	        // put data from sorted list to hashmap
+	        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
+	        for (Map.Entry<String, Integer> aa : list) {
+	            temp.put(aa.getKey(), aa.getValue());
+	        }
+	        return temp;
+	    }
+	
+		
+		
+		public static <K, V extends Comparable<? super V>> Map<K, V> ReverseSortByValue
+	    (Map<K, V> map) {
+
+	    return map.entrySet()
+	            .stream()
+	            .sorted(Map.Entry.<K, V> comparingByValue().reversed())
+	            // Type here -----^ reversed() here -------^
+	            .collect(Collectors.toMap(
+	                    Map.Entry::getKey,
+	                    Map.Entry::getValue,
+	                    (e1, e2) -> e1,
+	                    LinkedHashMap::new
+	            ));
+	}
+	
+	
+	
 	//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
 	/////////////////  GOD ACTIONS -> some method for convenience//////////////////////
 	//////////////// To quickly manipulate database without DB ///////////////////////
@@ -496,7 +622,7 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
         
         String peopleStr = "";
         for(String str: people) {
-        	peopleStr += str;
+        	peopleStr += str+" ";
         }
         
         
@@ -625,6 +751,9 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 		System.out.println("result is" + result);
 		return result;
 	}
+	
+	
+	
 	
 		
 		

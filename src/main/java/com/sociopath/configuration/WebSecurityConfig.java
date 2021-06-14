@@ -30,9 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers(
+						"/login/*",
+						"/register/*",
 						"/",
 						"/search",
-						"/about",
+						"/leaderboard",
 						"/register",
 						"/registrationconfirmed",
 						"/invaliduser",
@@ -40,7 +42,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/verifyemail",
 						"/confirmregister",
 						"/profilephoto/*",
-						"/sidebar"
+						"/sidebar",
+						"/login",
+						"/chart",
+						"/index",
+						"/chart/*",
+						"/search",
+						"/search/*"
 						)
 				.permitAll()
 				.antMatchers(
@@ -48,7 +56,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					"/css/*",
 					"/img/*")
 				.permitAll()
-				.antMatchers("/addstatus",
+				.antMatchers(
+						"/god/*",
+						"/",
+						"/addstatus",
 						"/editstatus",
 						"/deletestatus",
 						"/viewstatus",
@@ -89,16 +100,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/conversation/*",
 						"/chatview/*",
 						"/messages",
-						"/markread"
-				
-						)
+						"/markread",
+						"/dashboard",
+						"/leaderboard")
 				.authenticated()
 				.anyRequest()
 				.denyAll()
 				.and()
-			.formLogin()
-				.loginPage("/login")
-				.defaultSuccessUrl("/", true)
+			.formLogin().loginPage("/login")
+				.defaultSuccessUrl("/dashboard", true)
 				.permitAll()
 				.and()
 			.logout()

@@ -9,12 +9,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.sociopath.model.entity.Users;
 import com.sociopath.model.dto.FriendResult;
+import com.sociopath.model.dto.SearchResult;
 import com.sociopath.model.entity.ReputationRelation;
 import com.sociopath.model.entity.Student;
 
+@Repository
 public interface StudentRepository extends Neo4jRepository<Student, Long> {	
 	
 
@@ -87,7 +90,20 @@ public interface StudentRepository extends Neo4jRepository<Student, Long> {
 
 	@Query("MATCH (n:Student)-[r:FRIENDS]-(b) WHERE id(n)=$id RETURN id(b) ")
 	ArrayList<Integer> getFriendsIdListById(int id);
+
+//	@Query("MATCH(n:Student)<-[r:REPUTATIONS]-(b:Student) RETURN n.username, SUM (r.point) ORDER BY SUM (r.point)DESC")
+//	Map<String,Integer> getReputationRanking();
 	
+	
+	//get the sorted list of username first
+	@Query("MATCH(n:Student)<-[r:REPUTATIONS]-(b:Student) ORDER BY SUM (r.point)DESC RETURN n.username")
+	ArrayList<String> getReputationRanking();
+
+	@Query("MATCH(n:Student)<-[r:REPUTATIONS]-(b:Student)WHERE n.username=$thisStudent RETURN SUM (r.point)")
+	Integer getHisTotalPoint(String thisStudent);
+
+	ArrayList<SearchResult> findByUsernameContainingIgnoreCase(String text);
+
 	
 	
 	

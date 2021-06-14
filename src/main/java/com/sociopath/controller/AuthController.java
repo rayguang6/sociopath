@@ -23,10 +23,11 @@ public class AuthController {
 
 	@Autowired
 	StudentService studentService;
+
 	
 	@RequestMapping("/login")
 	String admin() {
-		return "app.login";
+		return "login";
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
@@ -35,13 +36,13 @@ public class AuthController {
 		Users user = new Users();
 		
 		modelAndView.getModel().put("user", user);
-		modelAndView.setViewName("app.register");
+		modelAndView.setViewName("register");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	ModelAndView register(ModelAndView modelAndView, @Valid Users user, BindingResult result) {
-		modelAndView.setViewName("app.register");
+		modelAndView.setViewName("register");
 		
 		
 		if(!result.hasErrors()) {
