@@ -37,8 +37,8 @@
 		<label for="rep_point">Teaching Experience: </label>
 		<select id="rep_point" name="rep_point">
 
-			<option value="10">Awesome🥰</option>
-	 		<option value="2">Too Bad 😔</option>
+			<option value="10">Awesome</option>
+	 		<option value="2">Too Bad </option>
 	 		
 		</select>
 		

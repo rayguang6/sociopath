@@ -85,6 +85,9 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 			reputation = 1;
 		this.about="";
 		
+		  lunchStart.add(setTime());
+	      lunchPeriod.add((int) (Math.random() * 56)+ 5);
+		
 	}
 
 	public Student(T vInfo, Student<T,N> next) {
@@ -113,6 +116,7 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 	public void generateTime() {
 		lunchStart.add(setTime());
 		lunchPeriod.add((int) (Math.random() * 54) + 6); // (6-59)
+	
 	}
 
 	public void calculateAverage(int day) {

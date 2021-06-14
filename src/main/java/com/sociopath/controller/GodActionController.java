@@ -242,8 +242,19 @@ public class GodActionController {
 	@RequestMapping(value = "/event1", method = RequestMethod.POST)
 	ModelAndView Event1(ModelAndView modelAndView, @RequestParam(name = "mentee") String mentee,@RequestParam(name = "mentor") String mentor,@RequestParam(name = "rep_point") int rep_point) {
 		
-		studentService.teachStranger(mentee,mentor,rep_point);
-		modelAndView.setViewName("redirect:/event1");
+		Student stud = studentService.getStudent(mentee);
+		
+		List befores = stud.getReputationList();
+		
+		List<String> results = studentService.teachStranger(mentee,mentor,rep_point);
+		
+		List afters = stud.getReputationList();
+		
+		modelAndView.getModel().put("results", results);
+		modelAndView.getModel().put("mentee", mentee);
+		modelAndView.getModel().put("mentor", mentor);
+		
+		modelAndView.setViewName("/god/resultEvent1");
 		return modelAndView;
 	}
 	

@@ -127,8 +127,9 @@ public class CrushGraph{
 //        int startNode = (int) (Math.random() * 10) + 1;
 //        startNode=5;
 //        int endNode = startNode;
-        while (endNode == startNode) {
-            endNode = (int) (Math.random() * 10) + 1;
+        if (endNode == startNode) {
+        	result.add("Cannot perform this action! They are the same person.");
+            return result;
         } 
 
         System.out.println("Following are all different paths from " + startNode + " to " + endNode);

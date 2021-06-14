@@ -1,31 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="/WEB-INF/includes/header.jsp" %>
+  
+  <c:url var="outboundDestination" value="/app/message/send/${chatWithUserID}" />  
+  <c:url var="inboundDestination" value="/user/queue/${chatWithUserID}" />
+  <c:url var="conversationAjaxUrl" value="/conversation/${chatWithUserID}" />
 
-
-				</div>
-
-
-			</div>
-
-		</div>
-
-	</div>
-
-
-	
-
-
-  	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-
-	<script src="${contextRoot}/js/bootstrap.min.js"></script>
-	
-	<sec:authorize access="isAuthenticated()">
-		<script>
-			connectionManager.connect();
-		</script>
-	</sec:authorize>
-	
-	
-	
-	 <script>
+    <script>
     
     var pagesFetched = 1;
     
@@ -129,6 +109,6 @@
 	connectionManager.fetchMessages("${conversationAjaxUrl}", refreshMessages, 0);
 	
     </script>
-
-  </body>
-</html>
+    
+    
+    <%@include file="/WEB-INF/includes/footer.jsp" %>

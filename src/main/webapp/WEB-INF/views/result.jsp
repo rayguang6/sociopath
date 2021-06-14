@@ -41,7 +41,7 @@
 								<img  src="/img/chatIcon.png" width="30"> 
 							</a>
 								
-						</div></a>
+						</div>
 						
 					</div>				
 									

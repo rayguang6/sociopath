@@ -190,6 +190,7 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 	public int getRep(String source, String destination) { //get rep point between 2 nodes
         return studentRepository.getRep(source, destination);
     }
+
 	
 	
 //	public ArrayList<Student> getFriends(String student) { //print friends of one
@@ -236,6 +237,83 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 	
 	public List<Student> getFriendsByUsername(String username) {
 		return studentRepository.getFriendsByUsername(username);
+	}
+	
+	public List<String> getFriendNamesByUsername(String username) {
+		return studentRepository.getFriendsName(username);
+	}
+	
+	/*
+	//Find one's Strangers
+	public List<Student> getStrangersByUsername(String username) {
+		
+		List<Student> listOfStudents = getAllStudents();
+		
+		List<Student> listOfHisFriends = getFriendsByUsername(username);
+		
+	
+		List<Student> listOfHisStrangers = new ArrayList<Student>();
+
+	
+		for( int i=0; i<listOfStudents.size(); i++) {
+			
+			Student student = listOfStudents.get(i);
+						
+			if(listOfHisFriends.contains(listOfStudents.get(i))) {
+				System.out.println("Contains");
+			}else {
+				listOfHisStrangers.add(student);
+			}
+		}
+		
+		System.out.println("###################### Strangers After \n\n");
+		System.out.println(listOfHisStrangers);
+		System.out.println("######################\n\n");
+		
+		
+		return listOfHisStrangers;
+	}
+	*/
+	
+	
+	public List<Student> getStrangersByUsername(String username) {
+		
+		List<String> listOfNames =getAllUsername();
+		
+		List<String> listOfFriendNames = getFriendNamesByUsername(username);
+		
+		List<String> strangerList = new ArrayList<>();
+		
+		
+		
+		List<Student> listOfHisStrangers = new ArrayList<Student>();
+	
+		for( int i=0; i<listOfNames.size(); i++) {
+			
+			String name = listOfNames.get(i);
+						
+			if(listOfFriendNames.contains(name)) {
+				System.out.println("\n\n\n" + name);
+			}else {
+				strangerList.add(name);
+			}
+		}
+		
+		
+		
+		//convert stranger username to Student
+		
+		strangerList.remove(username);
+		
+		for(int j = 0; j<strangerList.size();j++) {
+			
+			String strangeName = strangerList.get(j);
+			Student student = getStudent(strangeName);
+			listOfHisStrangers.add(student);
+		}
+		
+		
+		return listOfHisStrangers;
 	}
 	
 	public List<String> getFriendsName(String username) {
@@ -454,29 +532,52 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 		
 		
 	//EVENT1
-	public boolean teachStranger(String mentee, String mentor, int rep_point) {
+	public List<String> teachStranger(String mentee, String mentor, int rep_point) {
 		/*if friend, return false (but actually we'll limit the input, which means student can only pick from non-friend mentor)
 		 * 
 		 */
 		
+		List<String> teachStranger = new ArrayList<>();
+		
+		if ((mentee.equals(mentor))) {
+			teachStranger.add("They are the same person.");
+			return teachStranger;
+        }
+		
 		if (!hasStudent(mentee) || !hasStudent(mentor)) {
-            return false;
+			teachStranger.add("Student don't exist.");
+			return teachStranger;
         }
 		
 		if (isFriend(mentee,mentor)) {
-            return false;
+			teachStranger.add("They are already friends.");
+			return teachStranger;
         }
 		
 		
 		
+		Student stud1 = getStudent(mentee);
+		String suddenly1 =(stud1.getReputationList().toString());
+		teachStranger.add("BEfore: "+suddenly1);
+		
 		if(hasRep(mentee,mentor)) {
+			
 			updateRep(mentee,mentor,rep_point);
+			
+			
 		}else {
 			createRep(mentee, mentor, rep_point);
+			
 		}
 		
+		Student stud2 = getStudent(mentee);
+		String suddenly2 =(stud2.getReputationList().toString());
+		teachStranger.add("After: "+suddenly2);
+		
+		
+		
 		createFriend(mentee,mentor);
-		return true;
+		return teachStranger;
 	}
 	
 	//EVENT 2
@@ -521,9 +622,13 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
         Student meMyself = studentRepository.findByUsername(me);
         while(meMyself.lunchPeriod.size()<day){
         	meMyself.generateTime();
+        	
         }
         meMyself.calculateAverage(day);
         ME=meMyself;
+        
+        studentRepository.save(meMyself);
+        
         
         
         
@@ -537,6 +642,8 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
             sourceV.calculateAverage(day);
             ary[i]=sourceV;
 
+            
+            studentRepository.save(sourceV);
         }
         
         //sort accroding priority, less time used will be priotized, first observed has least time
@@ -662,7 +769,6 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
             line[i]= Integer.parseInt(bookArray[i]);
         }
 
-    	
         MyStack<Integer> stck=new MyStack<>();
         boolean action=true;
         int round=0;

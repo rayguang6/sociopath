@@ -44,6 +44,55 @@
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 
 
+
+
+
+<!-- Web Socket -->
+ <c:url var="outboundDestination" value="/app/message/send/${chatWithUserID}" />  
+  <c:url var="inboundDestination" value="/user/queue/${chatWithUserID}" />
+  <c:url var="conversationAjaxUrl" value="/conversation/${chatWithUserID}" />
+
+   
+<script>
+		function alertUser(from, text) {
+			if (!("Notification" in window)) {
+				// Notifications not supported
+				return;
+			} else if (Notification.permission === "denied") {
+				// User doesn't want notifications
+				return;
+			} else if (Notification.permission !== "granted") {
+				Notification.requestPermission();
+			}
+
+			if (Notification.permission === "granted") {
+				var notification = new Notification(from, {
+					body : text
+				});
+
+				notification.onclick = function() {
+					window.location.href = "/messages?p=1";
+				}
+			}
+		}
+		var connectionManager = new ConnectionManager("/chat");
+		connectionManager.addSubscription("/user/queue/newmessages", function(
+				messageJson) {
+			var message = JSON.parse(messageJson.body);
+			alertUser(message.from, message.text);
+		});
+	</script>
+
+
+
+
+
+
+
+
+
+
+
 <title>Sociopath</title>
 </head>
 <body>

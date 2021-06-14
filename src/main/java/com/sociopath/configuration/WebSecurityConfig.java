@@ -84,7 +84,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/resultEvent3/*",
 						"/resultEvent4",
 						"/resultEvent5",
-						"/resultEvent5/*"
+						"/resultEvent5/*",
+						"/resultEvent1",
+						"/resultEvent1/*"
 						)
 				.hasRole("ADMIN")
 				.antMatchers(
@@ -102,7 +104,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/messages",
 						"/markread",
 						"/dashboard",
-						"/leaderboard")
+						"/leaderboard",
+						"/FindStranger")
 				.authenticated()
 				.anyRequest()
 				.denyAll()

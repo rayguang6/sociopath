@@ -1,5 +1,6 @@
 package com.sociopath.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,6 +122,26 @@ public class StudentController {
 		return modelAndView;
 	}
 	
+	
+	//display Stranger of this account for EVENT 1
+	@RequestMapping(value = "/FindStranger")
+	ModelAndView FindStranger(ModelAndView mav) {
+
+//		List<Student> students = studentService.getAllStudents();
+		
+		String thisUsername = getUsername();
+		
+		System.out.println("***************************");
+		System.out.println("THIS");
+		System.out.println(thisUsername);
+		List<Student> myStrangers = studentService.getStrangersByUsername(thisUsername);
+		
+//		mav.getModel().put("students", students);
+		mav.getModel().put("myStrangers", myStrangers);
+		mav.setViewName("/FindStranger");
+		
+		return mav;
+	}
 	
 	
 	

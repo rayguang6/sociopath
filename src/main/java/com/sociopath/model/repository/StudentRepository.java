@@ -104,7 +104,8 @@ public interface StudentRepository extends Neo4jRepository<Student, Long> {
 
 	ArrayList<SearchResult> findByUsernameContainingIgnoreCase(String text);
 
-	
-	
+	@Query("MATCH (n:Student)-[r:REPUTATIONS]->() RETURN ")
+	List<Integer> getMyReputation(String username);
+
 	
 }

@@ -25,6 +25,10 @@ public class PageController {
 	@Autowired
 	private StatusUpdateService statusUpdateService;
 	
+	@Value("${message.error.forbidden}")
+	private String accessDeniedMessage;
+	
+	
 	@RequestMapping("/")
 	ModelAndView home(ModelAndView modelAndView) {
 		
@@ -46,6 +50,16 @@ public class PageController {
 		
 		modelAndView.setViewName("/dashboard");
 		
+		return modelAndView;
+	}
+	
+	
+	//handle access denied
+	@RequestMapping("/403")
+	ModelAndView accessDenied(ModelAndView modelAndView) {
+
+		modelAndView.getModel().put("message", accessDeniedMessage);
+		modelAndView.setViewName("message");
 		return modelAndView;
 	}
 	
