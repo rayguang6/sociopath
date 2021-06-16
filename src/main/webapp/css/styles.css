@@ -68,7 +68,8 @@ body {
 
 .panel-body {
 	padding: 10px 10px 10px 15px;
-	border: 1px solid #808080;
+	border: 1px solid #c2c2c2;
+	background-color:#fff;
 }
 
 .statusPostTitle {
@@ -280,6 +281,11 @@ textarea {
 
 .sideBar .group {
 	border-bottom: 1px solid #a0a0a0;
+}
+
+#sidePhoto{
+	width:32px;
+	height:32px;
 }
 
 .navItem {
@@ -540,4 +546,90 @@ textarea {
 
 .chatButton{
 	margin-left:400px;
+}
+
+
+.eventHead{
+	width:100%;
+	margin:auto;
+	text-align:center;
+	align-items:center;
+	padding:20px;
+	background-color:#0D6EFD;
+	border-radius: 10px 10px 0 0;
+	color:white;
+}
+
+.eventBody{
+	background-color:white;
+	padding:20px;
+	margin-top:20px;
+}
+
+.eventContainer{
+	width:80%;
+	margin:auto;
+	background:white;
+	margin-top:100px;
+	margin-bottom:20px;
+	border-radius:10px;
+	align-items:center;
+	justify-content: center;
+	padding:0;
+}
+
+/*Forms*/
+select.btn-mini {
+    height: auto;
+    line-height: 14px;
+     background-color:#fff;
+         border: 1px solid #ced4da;
+    border-radius: .25rem;    
+    appearance: none;
+}
+
+/* this is optional (see below) */
+select.btn {
+    -webkit-appearance: button;
+       -moz-appearance: button;
+            appearance: button;
+    padding-right: 16px;
+    background-color:#fff;
+}
+
+select.btn-mini + .caret {
+    margin-left: -20px;
+    margin-top: 9px;
+}
+
+.ControllerContainer{
+	width:80%;
+	margin:auto;
+	background:white;
+	margin-top:10px;
+	margin-bottom:20px;
+	border-radius:10px;
+	align-items:center;
+	justify-content: center;
+	padding:20px;
+}
+
+.ControllerTitle{
+	margin:auto;
+	text-align:center;
+}
+
+.ControllerBody{
+	
+}
+
+.controlForm{
+	border-radius:10px ;
+	border: 1px solid #0D6EFD;
+	padding:20px;
+	margin-top:30px;
+}
+
+.form-control-sm{
+	border: 1px solid #ced4da;
 }

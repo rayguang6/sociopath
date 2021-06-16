@@ -7,9 +7,16 @@
 
 
 
-<h1>Event 3 Have Lunch</h1>
-<h3>>>Your Road To Glory >></h3>
-<h3>>> PARALLEL FARMING >></h3>
+<div class="container">
+	
+	<div class="eventContainer">
+	
+	<div class="eventHead">
+		<h1>Event 3 Have Lunch</h1>
+	</div>
+	
+		<div class="eventBody">
+
 
 <form method="post" action="event3">
 
@@ -39,3 +46,5 @@
 	<br> <input type="submit" value="Submit">
 
 </form>
+
+</div></div></div>

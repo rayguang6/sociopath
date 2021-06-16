@@ -51,10 +51,13 @@ public class AuthController {
 			//Straight Away Add the profile of the user
 			Student student = new Student();
 			student.setUsername(user.getUsername());
+			student.generateTime();
 			studentService.save(student);  //then use the username to create it's profile
 			
 			modelAndView.setViewName("redirect:/");
 		}
 		return modelAndView;
 	}
+	
+	
 }

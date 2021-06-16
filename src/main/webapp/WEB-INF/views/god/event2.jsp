@@ -6,9 +6,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
-
-<h1>Event 2  Chit Chat </h1>
-
+<div class="container">
+	
+	<div class="eventContainer">
+	
+	<div class="eventHead">
+		<h1>Event 2 Chit Chat</h1>
+	</div>
+	
+		<div class="eventBody">
 
 <form method="post" action="event2">
 	
@@ -50,11 +56,13 @@
 		<label for="good">What are they talking about </label>
 		<select id="good" name="good">
 
-			<option value="true">Good Good Thing🥰</option>
-	 		<option value="false">Bad Bad Thing 😔</option>
+			<option value="true">Good Good Thing</option>
+	 		<option value="false">Bad Bad Thing </option>
 	 		
 		</select>
 		
 		<input type="submit" value="Submit">
 	
 </form>
+
+</div></div></div>

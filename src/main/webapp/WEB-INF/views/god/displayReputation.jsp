@@ -7,9 +7,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Display All Reputations</h1>
 
+<div class="container-lg ControllerContainer">
 
+<div class="ControllerTitle">
+
+	<h1> Display All Reputation </h1>
+
+</div>
+
+<div class="ControllerBody">
 
 <c:forEach var="friend" items="${friends}">
 
@@ -28,14 +35,12 @@
 			<div class="results-details">
 			
 				<div class="student basic profile">
-					<a href="${profileLink}"><c:out value="${student.username}" /></a>
+					<a href="/profile/${student.username}"><c:out value="${student.username}" /></a>
 					
-					<c:out value=" in= ${student.indeg} "></c:out>
-					<c:out value=" out= ${student.outdeg} "></c:out>
+		
 					<c:out value="   ${student.reputationList}"></c:out>
 
 										
-					<a onclick="confirm('Sure Want Delete?')" href="${deleteStudent}">Delete</a>
 				</div>
 
 			</div>
@@ -48,3 +53,5 @@
 
 <c:url var="loginUrl" value="/login" />
 
+</div>
+</div>

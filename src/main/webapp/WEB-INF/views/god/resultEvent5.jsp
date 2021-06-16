@@ -13,9 +13,9 @@
 <br>
 <h3>Your Result is</h3>
 
-
-<h5>Crush is : <c:out value="${crush}"></c:out></h5>
 <h5>Rumors starts from : <c:out value="${rumor}"></c:out></h5>
+<h5>Crush is : <c:out value="${crush}"></c:out></h5>
+
 <h5>You chosed to add : <c:out value="${choice}  lines"></c:out></h5>
 
 	<c:forEach var="result" items="${results}" varStatus="s">

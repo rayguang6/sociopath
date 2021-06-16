@@ -22,6 +22,7 @@ public interface StudentRepository extends Neo4jRepository<Student, Long> {
 	
 
 
+
 	Student findByUser(Users user);
 	
 	Student findByUsername(String username);
@@ -44,8 +45,8 @@ public interface StudentRepository extends Neo4jRepository<Student, Long> {
 	@Query("MATCH(a:Student),(b:Student)WHERE a.username = $student1 AND b.username = $student2 CREATE (a)-[r:REPUTATIONS{point:$point}]->(b)")
 	Student createRep(String student1, String student2, int point);
 	
-	@Query("MATCH(a:Student)-[r:REPUTATIONS]->(b:Student) WHERE a.username = $source AND b.username = $destination RETURN r.point")
-	int getRep(String source, String destination);
+	@Query("MATCH(a:Student)-[r:REPUTATIONS]->(b:Student) WHERE a.username =$source AND b.username =$destination RETURN r.point")
+	Integer getRep(String source, String destination);
 
 	@Query("MATCH(a:Student) WHERE a.username = $username SET a.indeg=a.indeg+1" )
 	void increaseIndeg(String username);
@@ -104,8 +105,29 @@ public interface StudentRepository extends Neo4jRepository<Student, Long> {
 
 	ArrayList<SearchResult> findByUsernameContainingIgnoreCase(String text);
 
-	@Query("MATCH (n:Student)-[r:REPUTATIONS]->() RETURN ")
-	List<Integer> getMyReputation(String username);
+//	@Query("MATCH (n:Student)-[r:REPUTATIONS]->() RETURN ")
+//	List<Integer> getMyReputation(String username);
 
 	
+	@Query("MATCH(n:Student)-[r:REPUTATIONS]->(b:Student)WHERE n.username=$source AND b.username=$destination DELETE r ")
+	void deleteRep(String source, String destination);
+
+	@Query("MATCH(n:Student)-[r:REPUTATIONS]-(b:Student) WHERE n.username=$source AND b.username=$destination DELETE r ")
+	void deleteBothRep(String source, String destination);
+
+	@Query("MATCH(n:Student)-[r:REPUTATIONS]-(b:Student) DELETE r ")
+	void deleteAllRep();
+
+	@Query("MATCH(n:Student)-[r:FRIENDS]-(b:Student) WHERE n.username=$source AND b.username=$destination DELETE r ")
+	void deleteBothFriend(String source, String destination);
+	
+	@Query("MATCH(n:Student)-[r:FRIENDS]-(b:Student) DELETE r ")
+	void deleteAllFriend();
+
+	//later need to condition must friend
+	@Query("MATCH(a:Student)<-[r:REPUTATIONS]-(b:Student) WHERE a.username=$username AND r.point<0 RETURN b")
+	List<Student> getFrenemy(String username);
+
+	@Query("MATCH(a:Student)<-[r:REPUTATIONS]-(b:Student) WHERE a.username=$username AND r.point>=0 RETURN b")
+	List<Student> getRealFriend(String username);
 }

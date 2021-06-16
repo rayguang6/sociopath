@@ -15,7 +15,7 @@
 	
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		
-		<label for="numOfRelation">How Many Relationships You Want To Add</label>
+		<label for="numOfRelation">How Many People's?</label>
 		<input type='text' name='numOfRelation'>
 		
 		<input class="btn-primary" type="submit" value="Submit">

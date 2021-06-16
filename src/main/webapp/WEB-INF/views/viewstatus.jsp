@@ -23,7 +23,7 @@
 
 				<div class="panel-heading">
 					<div class="panel-title">
-						Status update added on
+						Announced On
 						<fmt:formatDate pattern="EEEE d MMMM y 'at' H:mm:s "
 							value="${statusUpdate.added}" />
 					</div>
@@ -33,9 +33,12 @@
 
 					<div>${statusUpdate.text}</div>
 
+					<sec:authorize access="hasRole('ADMIN')">
 					<div class="edit-links pull-right">
 						<a href="${editLink}">edit</a> | <a onclick="return confirm('Really delete this status update?');" href="${deleteLink}">delete</a>
 					</div>
+					
+					</sec:authorize>
 
 				</div>
 

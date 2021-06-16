@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-	<h1>Hello Result of Event 6</h1>
+	<h1>Result of Event 6</h1>
 	
 	
 	<h5>Friends</h5>

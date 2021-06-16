@@ -18,15 +18,15 @@
 		<h2>Post Something Here</h2>
 		<div class="myForm">
 
-			<form:form class="statusForm" modelAttribute="statusUpdate">
+			<form class="statusForm" >
 				<div class="form-group">
-					<form:textarea class="form-control postInput" path="text"
-						name="text" value=""></form:textarea>
+					<textarea class="form-control postInput" path="text"
+						name="text" value=""></textarea>
 				</div>
 
 				<button type="submit" class="w-100 btn btn-lg btn-primary"
 					value="submit">POST</button>
-			</form:form>
+			</form>
 
 		</div>
 
@@ -38,8 +38,41 @@
 	
 	
 	<!-- For loop to get all posts -->
+	<div class="postContainer">
+		<div class="d-flex postHead ">
+		
+			<div class="postProfile">
+				<img
+					src="https://scontent.fmkz1-1.fna.fbcdn.net/v/t1.6435-9/84240445_2792862387500252_5848255734860480512_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=84a396&_nc_ohc=A_FJyKjSlqEAX8YEvwN&tn=lCZUPHlVXa-XqvCw&_nc_ht=scontent.fmkz1-1.fna&oh=023728caaa631105678e23bc048b773f&oe=60CDD9FD"
+					class="postProfileImg" alt="Owner">
+			</div>
+			
+			<div>
+				<h6><a href="#"> Mr Suddenly </a></h6>
+				<p> 15 June 2021</p>
+			</div>
+			
+			<a class="postEditLink" href="#">edit</a>
+		
+		
+		</div>
+		<div class="postBody">
+		
+			<div class="homepage-status"> First Ever Post</div>
+
+		</div>
+		
+		<div class="postBottom postingButtons">
+		
+				<button type="submit" class="btn btn-primary-outline outlineButton"
+					value="submit">Like</button>
+					
+				<button type="submit" class="btn btn-primary-outline outlineButton"
+					value="submit">Comment</button>
+		</div>
+	</div>
 	
-	
+	<!-- Second Post.   Currently Hardcoded -->
 	<div class="postContainer">
 		<div class="d-flex postHead ">
 		
@@ -60,7 +93,7 @@
 		</div>
 		<div class="postBody">
 		
-			<div class="homepage-status">${statusUpdate.text}</div>
+			<div class="homepage-status"> Happy Birthday</div>
 
 		</div>
 		
@@ -71,9 +104,9 @@
 					
 				<button type="submit" class="btn btn-primary-outline outlineButton"
 					value="submit">Comment</button>
-			
 		</div>
 	</div>
+	
 	
 	
 	

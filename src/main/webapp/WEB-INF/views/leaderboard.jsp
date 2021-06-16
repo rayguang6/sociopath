@@ -22,9 +22,17 @@
 
 				<ul class="list-group list-group-flush">
 					<c:forEach var="reputationBoard" items="${reputationBoards}">
-						<li class="list-group-item"><strong><c:out
-									value="  ${reputationBoard.key}  -> "></c:out></strong> <c:out
-								value="Point:  ${reputationBoard.value}   "></c:out></li>
+						<li class="list-group-item">
+						
+						<a href="${contextRoot}/profile/${reputationBoard.key}" class="sideATag">
+							<img id="" class="resultPhoto" src="img/avatar${reputationBoard.key}.png" onerror="this.onerror=null; this.src='/img/avatar.png'" alt="Profile Image" >	
+							</a>
+						
+						<strong>
+						
+						<c:out value="  ${reputationBoard.key}  -> "></c:out></strong> 
+									
+						<c:out value="Point:  ${reputationBoard.value}   "></c:out></li>
 					</c:forEach>
 				</ul>
 

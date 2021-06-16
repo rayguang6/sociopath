@@ -30,9 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers(
+						"/403",
 						"/login/*",
 						"/register/*",
 						"/",
+						"/#",
 						"/search",
 						"/leaderboard",
 						"/register",
@@ -48,7 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/index",
 						"/chart/*",
 						"/search",
-						"/search/*"
+						"/search/*",
+						"/viewstatus"
 						)
 				.permitAll()
 				.antMatchers(
@@ -62,12 +65,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/addstatus",
 						"/editstatus",
 						"/deletestatus",
-						"/viewstatus",
 						"/godDashboard",
 						"/godDelete",
 						"/godDeleteStudent",
 						"/godCreateRep",
+						"/godUpdateRep",
 						"/godCreateFriend",
+						"/godDeleteRep",
+						"/godDeleteBothRep",
+						"/godDeleteAllRep",
+						"/godDeleteBothFriend",
+						"/godDeleteAllFriend",
+						"/createBasicRep",
+						"/createBasicFriend",
 						"/testForm",
 						"/displayReputation",
 						"/displayFriend",
@@ -86,7 +96,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/resultEvent5",
 						"/resultEvent5/*",
 						"/resultEvent1",
-						"/resultEvent1/*"
+						"/resultEvent1/*",
+						"/resultEvent2",
+						"/resultEvent2/*",
+						"/godViewProfile",
+						"/displayFriend/*"
 						)
 				.hasRole("ADMIN")
 				.antMatchers(
@@ -105,7 +119,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/markread",
 						"/dashboard",
 						"/leaderboard",
-						"/FindStranger")
+						"/FindStranger",
+						"/FindStranger/*",
+						"/askStranger",
+						"/resultAskStranger",
+						"/MyFriends",
+						"/MyFriends/*",
+						"/ChitChat",
+						"/ArrangeBook",
+						"/eventResult",
+						"/arrangeBookResult",
+						"/Lunch",
+						"/ScheduleLunch",
+						"/MeetCrush",
+						"/Friendship"
+						)
 				.authenticated()
 				.anyRequest()
 				.denyAll()

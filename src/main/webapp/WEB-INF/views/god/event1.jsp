@@ -6,7 +6,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Event 1  Teach Stranger</h1>
+
+<div class="container">
+	
+	<div class="eventContainer">
+	
+	<div class="eventHead">
+		<h1>Event 1  Teach Stranger</h1>
+	</div>
+	
+		<div class="eventBody">
 
 <form method="post" action="event1">
 	
@@ -45,3 +54,5 @@
 		<input type="submit" value="Submit">
 	
 </form>
+
+</div></div></div>

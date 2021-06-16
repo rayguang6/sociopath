@@ -28,19 +28,6 @@ public class CrushGraph{
             friendList[i] = new ArrayList<>();
         }
         
-        
-        
-        //retrieving all friend edges from the graph and add to ArrayList<Integer>[] friendList
-        
-        //for (int i = 1; i < size; i++) { 
-        	
-       //     ArrayList<Integer> friend = theList;
-            
-        //    for (int f = 0; f < friend.size(); f++) {
-         //       addEdge(i, friend.get(f));
-         //   }
-            
-        //}
        
     }
     

@@ -44,6 +44,50 @@
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 
 
+
+
+
+<!-- Web Socket -->
+ <c:url var="outboundDestination" value="/app/message/send/${chatWithUserID}" />  
+  <c:url var="inboundDestination" value="/user/queue/${chatWithUserID}" />
+  <c:url var="conversationAjaxUrl" value="/conversation/${chatWithUserID}" />
+
+   
+<script>
+		function alertUser(from, text) {
+			if (!("Notification" in window)) {
+				// Notifications not supported
+				return;
+			} else if (Notification.permission === "denied") {
+				// User doesn't want notifications
+				return;
+			} else if (Notification.permission !== "granted") {
+				Notification.requestPermission();
+			}
+
+			if (Notification.permission === "granted") {
+				var notification = new Notification(from, {
+					body : text
+				});
+
+				notification.onclick = function() {
+					window.location.href = "/messages?p=1";
+				}
+			}
+		}
+		var connectionManager = new ConnectionManager("/chat");
+		connectionManager.addSubscription("/user/queue/newmessages", function(
+				messageJson) {
+			var message = JSON.parse(messageJson.body);
+			alertUser(message.from, message.text);
+		});
+	</script>
+
+
+
+
+
+
 <title>Sociopath</title>
 </head>
 <body>
@@ -53,7 +97,7 @@
 
 	<div class="container-fluid">
 
-		<a class="navbar-brand brandLogo" href="${contextRoot}/dashboard">SCP</a>
+		<a class="navbar-brand brandLogo" href="${contextRoot}/dashboard"><strong>SCP</strong></a>
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
@@ -69,24 +113,25 @@
 				</li>
 
 				<li class="nav-item leftItem"><a class="nav-link active"
-					aria-current="page" href="${contextRoot}/chart">Arrange Book</a>
+					aria-current="page" href="${contextRoot}/viewstatus">Announcements</a>
 				</li>
 			</ul>
 
 
-			<form class="d-flex searchForm">
+			<form class="d-flex searchForm" action="search">
 			
 			<span class="d-flex seachBar ">
 			
 				<input class="form-control searchInput" type="search" placeholder="Search"
-					aria-label="Search">
+					aria-label="Search" name="s">
 					
-				<div class="searchIconDiv">
-					
+					<button class="searchButton" value="submit">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="grey" class="bi bi-search searchIcon" viewBox="0 0 16 16">
  						 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
 						</svg>
-				</div>
+					
+					</button>
+			
 
 			</span>
 			</form>
@@ -106,7 +151,9 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				
 					<li class="nav-item leftItem"><a class="nav-link active"
-						aria-current="page" href="${contextRoot}/studentprofile">Profile</a>
+						aria-current="page" href="${contextRoot}/profile">
+						<c:out value="${loggedIn}'s"></c:out>
+						 Profile</a>
 					</li>
 	
 				
@@ -156,7 +203,7 @@
 									4</a></li>
 							<li><a class="dropdown-item" href="${contextRoot}/event5">Event
 									5</a></li>
-							<li><a class="dropdown-item" href="${contextRoot}/event6">Event
+							<li><a class="dropdown-item" href="${contextRoot}/preEvent6">Event
 									6</a></li>
 
 
@@ -198,8 +245,10 @@
 
 
 
+
+
 <!--     ######################################################################################### -->
-<!--  ABOVE ARE Just HEADER -->
+<!--  ABOVE ARE Just HEADER without the sidebar-->
 
 
 
@@ -236,8 +285,6 @@
 		
 		</div>
 	</div>
-
-
 
 
 <div class="friendContainer">

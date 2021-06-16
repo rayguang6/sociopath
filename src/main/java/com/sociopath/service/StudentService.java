@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
@@ -145,6 +146,10 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 	
 	public boolean createRep(String source, String destination, int rep) {
 		
+		if(source.equals(destination)) {
+			return false;
+		}
+		
 		if (!hasStudent(source) || !hasStudent(destination)) {
             return false;
         }
@@ -177,8 +182,27 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 		return true;
 	}
 	
+	public void deleteRep(String source, String destination) {
+		studentRepository.deleteRep(source,destination);
+	}
 	
-	//!!!!   这个是什么用处？？
+	public void deleteBothRep(String source, String destination) {
+		studentRepository.deleteBothRep(source,destination);
+	}
+	
+	public void deleteAllRep() {
+		studentRepository.deleteAllRep();
+	}
+	
+	public void deleteBothFriend(String source, String destination) {
+		studentRepository.deleteBothFriend(source,destination);
+	}
+	
+	public void deleteAllFriend() {
+		studentRepository.deleteAllFriend();
+	}
+	
+	
 	public boolean addUndirectedEdge(String source, String destination){
         return createRep(source, destination, 0) && createRep(destination, source, 0);
     }
@@ -218,7 +242,6 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 			return false;
 		}
 		
-		
 		studentRepository.createFriend(source,destination);   //usually this alrdy done the job using query
 		
 		Student student1 = studentRepository.findByUsername(source);
@@ -235,6 +258,7 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 		return false;
 	}
 	
+	//get friends of one by passing his username
 	public List<Student> getFriendsByUsername(String username) {
 		return studentRepository.getFriendsByUsername(username);
 	}
@@ -446,31 +470,7 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 	
 ////////////////////////////////////////////////////////////////////////////////
 		//!!!  Can't get multiple result from db even using hashmap...
-		
 	
-		//GET SORTED LEADERBOARD's username first
-//		public Map<String, Integer> getReputationRanking(){
-//			
-//			 Map<String, Integer> reputationMap = new HashMap<>();
-//			 
-//			 
-//			//first get the sorted list of username
-//			ArrayList<String> leaderboard = studentRepository.getReputationRanking();
-//			
-//			//then get their point one by one
-//			for (int i=0; i<leaderboard.size(); i++) {
-//				
-//				String thisStudent = leaderboard.get(i);
-//								
-//				Integer hisTotalPoint = studentRepository.getHisTotalPoint(thisStudent);
-//				
-//				
-//				reputationMap.put(thisStudent, hisTotalPoint);
-//				
-//			}
-//			
-//			return reputationMap;
-//		}
 	
 	
 		
@@ -540,12 +540,12 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 		List<String> teachStranger = new ArrayList<>();
 		
 		if ((mentee.equals(mentor))) {
-			teachStranger.add("They are the same person.");
+			teachStranger.add("This can't be performed because they are the same person.");
 			return teachStranger;
         }
 		
 		if (!hasStudent(mentee) || !hasStudent(mentor)) {
-			teachStranger.add("Student don't exist.");
+			teachStranger.add("The Student does not exist.");
 			return teachStranger;
         }
 		
@@ -558,7 +558,7 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 		
 		Student stud1 = getStudent(mentee);
 		String suddenly1 =(stud1.getReputationList().toString());
-		teachStranger.add("BEfore: "+suddenly1);
+		teachStranger.add("Rep Points Before Event: "+suddenly1);
 		
 		if(hasRep(mentee,mentor)) {
 			
@@ -572,7 +572,7 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 		
 		Student stud2 = getStudent(mentee);
 		String suddenly2 =(stud2.getReputationList().toString());
-		teachStranger.add("After: "+suddenly2);
+		teachStranger.add("Rep Points After Event: "+suddenly2);
 		
 		
 		
@@ -581,33 +581,66 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 	}
 	
 	//EVENT 2
-	public boolean chitchat(String talker, String listener, String rumors, boolean good){ //feature 2
+	public List<String> chitchat(String talker, String listener, String rumors, boolean good){ //feature 2
         
+		List<String> result = new ArrayList<>();
+		
         if (!hasStudent(talker) || !hasStudent(listener) || !hasStudent(rumors)) {
-            return false;
+        	result.add("One of the Student does not exist");
+        	return result;
         }
         //basic requirement: talker should know both listener and rumors
         if (!isFriend(talker,listener) || !isFriend(talker,rumors)) {
-            return false;
+        	result.add("The speaker is not friends to the 'listener' or with the student being discussed");
+        	return result;
+        }
+        
+        if(talker.equals(listener)||(talker.equals(rumors)||(rumors.equals(listener)))) {
+        	result.add("Student duplicated");
+        	return result;
         }
         
         int weight = getRep(talker, rumors); 
         
+        Student speakStud = getStudent(talker);
+        String beforeChat = speakStud.getReputationList().toString();
+        result.add("Speaker's relative reputations: "+beforeChat);
+ 
+        
+        Student listenStud1 = getStudent(listener);
+        String before = listenStud1.getReputationList().toString();
+        result.add(listener+"'s Relative Rep before the event:  " +before);
+        
+        
         if (hasRep(listener, rumors)) { //如果他们已经有刻板印象 （也包括如果他们是朋友） //modidication of point
             if(good){
                  updateRep(listener, rumors, weight / 2);
-                return true;
+                 
             }else{
                  updateRep(listener, rumors, weight * -1);
-                 return true;
+                
             }
+            
         } else { //如果他们毫不相识 
+        	
             if (good) {
-                return createRep(listener, rumors, weight / 2);
+            	
+                 createRep(listener, rumors, weight / 2);
+                
             } else {
-                return createRep(listener, rumors, weight * -1);
+            	
+                 createRep(listener, rumors, weight * -1);
             }
         }
+        
+        
+        
+        Student listenStud = getStudent(listener);
+        String after = listenStud.getReputationList().toString();
+        result.add(listener+"'s Relative Rep after the event:  "  +after);
+
+        return result;
+        
     }
 	
 		
@@ -628,8 +661,6 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
         ME=meMyself;
         
         studentRepository.save(meMyself);
-        
-        
         
         
         for(int i=0; i<student.length; i++){
@@ -756,7 +787,7 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
     
     
     //event 4
-    public static List<String> arrangeBook(String books){
+    public static List<String> Event4(String books){
     	
         String[] bookArray = books.split(" ");
         List<String> resultList = new ArrayList<>();
@@ -815,6 +846,7 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
     //event6
     public static ArrayList<FriendshipList> event6(int[] student1, int[] student2, int num){
     	
+    	
     	Friendship f = new Friendship(num+1);
     	
     	for(int i=0; i<num; i++){
@@ -829,18 +861,19 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
     }
 
     //event5
-	public ArrayList<String> event5(int crush, int rumor, int choice) {
+	public ArrayList<String> event5(int rumor, int crush, int choice) {
 		
+		List<Student> studentList = getAllStudents();
 		
+//		int size = studentList.size()+1;
 		int size = getTotalVipStudent()+1;
-		System.out.println("\n\n########################");
-		System.out.println("size is "+ size);
+	
 		
 		CrushGraph crushGraph = new CrushGraph(size);
 		
 
 		for (int i = 1; i <size; i++) { 
-        	
+        				
 			ArrayList<Integer> friend = getFriends(i);
             
             for (int f = 0; f < friend.size(); f++) {
@@ -851,13 +884,191 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
         }
 		
 //		Map<String, List<String>> suddenlyMap = crushGraph.main(crush,rumor,choice);
-		ArrayList<String> result = crushGraph.main(crush,rumor,choice);
-		
+		ArrayList<String> result = crushGraph.main(rumor,crush,choice);
 		
 		System.out.println("result is" + result);
 		return result;
 	}
+
 	
+	//event 4
+    public static Map<String, Integer> arrangeBook(String books){
+    	
+        String[] bookArray = books.split(" ");
+        
+        List<String> bookList = new ArrayList<>();
+        
+        //For Later Display Purpose, first I add the original state into my List
+        for(int gg=0; gg<bookArray.length; gg++){
+        	System.out.println("Initial State");
+            System.out.print(bookArray[gg]+" ");
+            
+            String original = bookArray[gg];
+            
+            bookList.add((original));
+        }
+        
+        bookList.add("0");
+        
+        
+        int size = bookArray.length;
+        
+        int[] line = new int[size];       //book array with different height
+        
+        for (int i = 0; i < bookArray.length; i++) {
+            line[i]= Integer.parseInt(bookArray[i]);
+        }
+
+        MyStack<Integer> stck=new MyStack<>();
+        boolean action=true;
+        int round=0;
+        while(action){
+            action=false;
+            stck.push(line[0]);
+            /*
+            if book arrangement: 13 16 12 17 15, book on shelf: array; book left on shelf after arrangment:stack
+            first round: 16 17 taken out, left: 13 12 15 (stack)
+            second round: 15 taken out, left: 13 12 (stack)
+            */
+            for(int j=1; j<size; j++){
+                if(line[j]>line[j-1]){
+                    action=true; //if there is book higher than the previous one, book is taken out.
+                }else{
+                    stck.push(line[j]);//is the book is already lower than previous one, no need take out, put to the stack.
+                }
+            }
+            if(action) round++; //if there is books picked out, mean that action had been done, thus round++
+            else break; //if no action taken out, end the loop
+            size=stck.getSize();
+            for(int j=size-1; j>=0; j--){
+                line[j]=stck.pop();
+            } //restoring the book in stack into array for next round of arrangement
+            System.out.print(round+" .  ");
+            
+            //###########################
+            String resultString="";
+            
+            
+            
+            for(int j=0; j<size; j++){
+                System.out.print(line[j]+" ");
+                
+                int heightOfThis = line[j];
+                
+                bookList.add(String.valueOf(heightOfThis));
+            }
+            
+            bookList.add("0");
+            
+            System.out.println("My Book List is: " + bookList);
+            
+            System.out.println("");
+                         
+        }
+        
+        
+        Map<String, Integer> myMap = new LinkedHashMap();
+        
+        //convert byMyself    convert the List<Str> to LinkedHashMap
+        //The TreeMap and HashMap will have different Orders.
+        
+        // loop until - 1 to remove the last 0, so that when print our , it won't have next round
+        for(int ff = 0; ff<bookList.size()-1; ff++) {
+        	
+        	String currBook = bookList.get(ff);
+        	System.out.println("curr Book"+ff+"  :  "+currBook);
+        	
+        	myMap.put(String.valueOf(ff), Integer.parseInt(currBook));
+        }
+        
+    	//printingMyMap
+    	for (Map.Entry<String, Integer> entry : myMap.entrySet()) {
+    		  
+            System.out.println(entry.getKey() + " : "
+                               + entry.getValue());
+        }
+       
+        return myMap;
+    }
+
+
+
+    //frenemies
+	public Map<String, Integer> getFrenemy(String username) {
+		
+		String target = username;
+
+		Map<String, Integer> frenemyMap = new HashMap<>();
+		
+		List<Student> frenemyList = studentRepository.getFrenemy(username);
+		
+		for (int i=0; i<frenemyList.size(); i++) {
+			
+			Student thisStudent = frenemyList.get(i);
+			
+			String thisUsername = thisStudent.getUsername();
+			
+			int thisRep = getRep(thisUsername, target);
+			
+			frenemyMap.put(thisUsername, thisRep);
+		}
+		
+		//Frenemy will sort asc
+		Map<String, Integer> sortedMap = ReverseSortByValue(frenemyMap);
+		
+		return sortedMap;
+	}
+	
+	//get real friends
+	public Map<String, Integer> getRealFriend(String username) {
+
+		String target = username;
+		Map<String, Integer> frenemyMap = new HashMap<>();
+		
+		List<Student> frenemyList = studentRepository.getRealFriend(username);
+		
+		for (int i=0; i<frenemyList.size(); i++) {
+			
+			Student thisStudent = frenemyList.get(i);
+			
+			String thisUsername = thisStudent.getUsername();
+			
+			int thisRep = getRep(thisUsername, target);
+			
+			frenemyMap.put(thisUsername, thisRep);
+		}
+		
+		//Frenemy will sort asc
+		Map<String, Integer> sortedMap = ReverseSortByValue(frenemyMap);
+		
+		return sortedMap;
+	}
+
+	//this is my point that pointed out
+	public Map<String, Integer> getFriendMap(String username) {
+
+		Map<String, Integer> myFriendMap = new HashMap<>();
+		
+		String target= username;
+		
+		List<Student> listOfStudents = getFriendsByUsername(username);
+		
+		for (int i=0; i<listOfStudents.size(); i++) {
+			
+			Student thisStudent = listOfStudents.get(i);
+			
+			String thisUsername = thisStudent.getUsername();
+			
+			int currRep = getRep(username, thisUsername);
+			
+			myFriendMap.put(thisUsername, currRep);
+			
+		}
+		
+		Map<String, Integer> sortedMap = ReverseSortByValue(myFriendMap);
+		
+		return sortedMap;
+	}
 	
 	
 	

@@ -42,13 +42,6 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 
 	private String photoExtension;
 
-//	@ManyToMany(fetch=FetchType.EAGER)
-//	@JoinTable(name="profile_interests", 
-//	joinColumns={ @JoinColumn(name="profile_id") },
-//	inverseJoinColumns = { @JoinColumn(name="interest_id") } )
-//	@OrderColumn(name="display_order")
-//	private Set<Interest> interests;
-
 	public T vertexInfo;
 	int reputation;
 	int divingrate;
@@ -60,7 +53,6 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 	int lastCheck ;
 	public int outdeg;
 	public int indeg;
-	/// Edge<T,N> relativeRep; 暂时搬去下面
 	Student<T, N> nextVertex;
 	
 	public ArrayList<Student> friendList = new ArrayList<>(); // this is to show friend list only
@@ -83,11 +75,9 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 		reputation = 10 - (divingrate / 10);// if diving rate high, reputation low
 		if (reputation == 0)
 			reputation = 1;
-		this.about="";
-		
+		this.about="Hi, I'm a Student";
 		  lunchStart.add(setTime());
 	      lunchPeriod.add((int) (Math.random() * 56)+ 5);
-		
 	}
 
 	public Student(T vInfo, Student<T,N> next) {

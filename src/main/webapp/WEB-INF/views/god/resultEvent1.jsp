@@ -10,8 +10,8 @@
 <h1> Result Of Event 1</h1>
 
 
-<c:out value="Mentee: ${mentee}"></c:out>
-<c:out value="Mentor:  ${mentor}"></c:out>
+<c:out value="Mentee: ${mentee}"></c:out><br>
+<c:out value="Mentor:  ${mentor}"></c:out><br><br>
 
 
 		  	<c:forEach var="result" items="${results}" varStatus="s">
@@ -26,5 +26,4 @@
 	
 	
 	<br>
-	<c:out value="This before: ${befores}"></c:out><br>
-	<c:out value="This before: ${afters}"></c:out>
+	

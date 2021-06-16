@@ -6,11 +6,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
+<div class="container">
+	
+	<div class="eventContainer">
+	
+	<div class="eventHead">
+		<h1>Event4  Arrange Book</h1>
+	</div>
+	
+		<div class="eventBody">
 
-<h1>Event 4  Arrange Book </h1>
 
-
-<form method="post" action="event4">
+	<form method="post" action="event4">
 	
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	
@@ -20,3 +27,6 @@
 		<input type="submit" value="Submit">
 	
 </form>
+
+
+</div></div></div>

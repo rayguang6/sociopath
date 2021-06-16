@@ -88,11 +88,6 @@
 
 
 
-
-
-
-
-
 <title>Sociopath</title>
 </head>
 <body>
@@ -118,7 +113,7 @@
 				</li>
 
 				<li class="nav-item leftItem"><a class="nav-link active"
-					aria-current="page" href="${contextRoot}/chart">Arrange Book</a>
+					aria-current="page" href="${contextRoot}/viewstatus">Announcements</a>
 				</li>
 			</ul>
 
@@ -156,7 +151,9 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				
 					<li class="nav-item leftItem"><a class="nav-link active"
-						aria-current="page" href="${contextRoot}/profile">Profile</a>
+						aria-current="page" href="${contextRoot}/profile">
+						<c:out value="${loggedIn}'s"></c:out>
+						 Profile</a>
 					</li>
 	
 				

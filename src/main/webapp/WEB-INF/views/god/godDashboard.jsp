@@ -8,8 +8,7 @@
 <h1>God Dashboard</h1>
 
 <h3>List of All Students, and their profiles</h3>
-<h4>The Add function will create a user together with student profile,  default password is 'sociopath'</h4>
-<h4>Delete will delete the user together</h4>
+
 
 <c:forEach var="student" items="${students}">
 
@@ -23,17 +22,15 @@
 			<div class="results-details">
 			
 				<div class="student basic profile">
-					<a href="${profileLink}"><c:out value="${student.username}" /></a>
+					<a href="${profileLink}"><c:out value=" ${student.username} " /></a>
 					
-					<c:out value="id: ${student.id} " />
-					<c:out value="Rep: ${student.reputation}"></c:out>
-					<c:out value="DR: ${student.divingrate}"></c:out>
-					<c:out value="F.L->  ${student.friendList}"></c:out>
+					<c:out value=" id: ${student.id} " />
+					<c:out value=" Rep: ${student.reputation}"></c:out>
+					<c:out value=" DivingRate: ${student.divingrate}%"></c:out>
 					
-					<c:out value="L.s ${student.lunchStart}"></c:out>
-					<c:out value="L.p ${student.lunchPeriod}"></c:out>
+					<c:out value="LunchStart: ${student.lunchStart}"></c:out>
+					<c:out value="LunchPeriod: ${student.lunchPeriod}"></c:out>
 					
-					<c:out value="${student.average_lunchStart}"></c:out>
 					
 					
 					<a onclick="confirm('Sure Want Delete?')" href="${deleteStudent}">Delete</a>
@@ -42,8 +39,6 @@
 
 				<div class="lunch">
 				
-					
-					
 				</div>
 				
 			</div>

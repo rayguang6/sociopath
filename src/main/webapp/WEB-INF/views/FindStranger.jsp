@@ -6,15 +6,26 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-	<h1>Find a Stranger Mentor to ask questions</h1>
+
+
+
+<div class="container">
+
+	<div class="leaderboardContainer ">
 	
-	<c:forEach var="myStranger" items="${myStrangers}">
-	
+			<h3>Find a Stranger Mentor to ask questions</h1><br>
+			<h5 class="leaderTitle">List Of Your Strangers</h1>			
 		
-		<c:out value="  ${myStranger.username}   "></c:out>
-	
-	
-					<div class="navItem searchResultNav">
+			<div class="leaderBody">
+
+		
+					<c:forEach var="myStranger" items="${myStrangers}">
+					
+					<c:url var="profilePhoto" value="/img/avatar${myStranger.username}.png" />	
+					
+					<div class="sideDiv">
+						
+						<div class="navItem searchResultNav">
 						
 						<a href="${contextRoot}/profile/${myStranger.username}" class="sideATag">
 							<img id="" class="resultPhoto" src="${profilePhoto}" onerror="this.onerror=null; this.src='/img/avatar.png'" alt="Profile Image" >	
@@ -24,15 +35,23 @@
 							<div class="resultUsername">
 							
 								<h3><a href="${contextRoot}/profile/${myStranger.username}" class="sideATag"><strong>${myStranger.username}</strong></a></h3>
-															
+							
 								</div>
 								
-							<a class="chatButton" href="/askStranger">
-								
+							<a class="chatButton"  href="/FindStranger/${myStranger.username}">
 								<img  src="/img/chatIcon.png" width="30"> 
 							</a>
 								
 						</div>
-	
-	</c:forEach>
+						
+					</div>				
+									
+					</c:forEach>
+		
 
+			</div>
+			
+		
+
+	</div>
+</div>

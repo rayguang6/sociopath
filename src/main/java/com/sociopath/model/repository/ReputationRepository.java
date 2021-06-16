@@ -15,7 +15,8 @@ import com.sociopath.model.entity.ReputationRelation;
 import com.sociopath.model.entity.Student;
 
 @Repository
-public interface ReputationRepository extends Neo4jRepository<ReputationRelation, Long> {	
+public interface ReputationRepository extends Neo4jRepository<ReputationRelation, Long> {
+
 	
 
 

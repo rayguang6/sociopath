@@ -18,7 +18,7 @@ function RandomRumor() {
 }
 
 function RandomChoice() {
-    var rnd = Math.floor(Math.random() * 9+1);
+    var rnd = Math.floor(Math.random() * 6);
     document.getElementById('choice').value = rnd;
 }
 
@@ -35,13 +35,13 @@ function RandomChoice() {
 <form method="post" action="event5">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
-	<label for="crush">Crush: </label>
-	<input type="text" name="crush" placeholder="who's the Crush?" id="crush" >
-    <input type="button" value="Generate Random" onclick="RandomCrush();" /><br>
-    
-    <label for="crush">Rumor: </label>
-    <input type="text" name="rumor" placeholder="where rumor's began?" id="rumor" >
+	<label for="crush">Rumor: </label>
+	<input type="text" name="rumor" placeholder="where the rumor began?" id="rumor" >
     <input type="button" value="Generate Random" onclick="RandomRumor();" /><br>
+    
+    <label for="crush">Crush: </label>
+    <input type="text" name="crush" placeholder="who's the Crush?" id="crush" >
+    <input type="button" value="Generate Random" onclick="RandomCrush();" /><br>
     
     <label for="crush">Lines: </label>
     <input type="text" name="choice" value="0" placeholder="how many extra line you want?" id="choice" >
