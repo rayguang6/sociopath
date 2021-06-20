@@ -26,9 +26,11 @@ import com.sociopath.model.dto.FriendResult;
 import com.sociopath.model.entity.CrushGraph;
 import com.sociopath.model.entity.Friendship;
 import com.sociopath.model.entity.FriendshipList;
+import com.sociopath.model.entity.Post;
 import com.sociopath.model.entity.ReputationRelation;
 import com.sociopath.model.entity.Student;
 import com.sociopath.model.entity.Users;
+import com.sociopath.model.repository.PostRepository;
 import com.sociopath.model.repository.ReputationRepository;
 import com.sociopath.model.repository.StudentRepository;
 import com.sociopath.model.repository.UserRepository;
@@ -55,6 +57,9 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 	
 	@Autowired
 	private ReputationRepository reputationRepository;
+	
+	@Autowired
+	private PostRepository postRepository;
 	
 	//////////////////////////////////////////////////////
 	///////////////   BASIC FUNCTIONS   //////////////////
@@ -211,8 +216,15 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 		studentRepository.updatePoint(source, destination, weight);
 	} 
 	
-	public int getRep(String source, String destination) { //get rep point between 2 nodes
-        return studentRepository.getRep(source, destination);
+	public Integer getRep(String source, String destination) { //get rep point between 2 nodes
+		
+		Integer reputation = studentRepository.getRep(source, destination);
+		
+		if(reputation==null) {
+			return 0;
+		}else {
+			return reputation;
+		}
     }
 
 	
@@ -466,6 +478,10 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 	return sortedMap;
 }
 	
+	public Integer gethisTotalPoint(String username) {
+		return studentRepository.getHisTotalPoint(username);
+	}
+	
 	
 	
 ////////////////////////////////////////////////////////////////////////////////
@@ -567,13 +583,20 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 			
 		}else {
 			createRep(mentee, mentor, rep_point);
+			createRep(mentor, mentee, 0);
 			
+		}
+		
+		//
+		if(hasRep(mentor,mentee)) {
+			updateRep(mentor,mentee,0);
+		}else {
+			createRep(mentor, mentee, 0);
 		}
 		
 		Student stud2 = getStudent(mentee);
 		String suddenly2 =(stud2.getReputationList().toString());
 		teachStranger.add("Rep Points After Event: "+suddenly2);
-		
 		
 		
 		createFriend(mentee,mentor);
@@ -647,6 +670,15 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 	public ArrayList<String> haveLunch(String[] student, String me, int day){ // updated feature 3: PARALLEL FARMING
 		
 		ArrayList<String> resultList = new ArrayList<>();
+		
+		
+		for(int i = 0; i<student.length; i++) {
+			if(student[i].equals(me)) {
+				resultList.add("You Cannot Select Yourself in the observe List");
+				return resultList;
+			}
+		}
+		
 		
         Student<T, N>[] ary=new Student[student.length];
         Student<T, N> ME=new Student<>();
@@ -1059,7 +1091,7 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 			
 			String thisUsername = thisStudent.getUsername();
 			
-			int currRep = getRep(username, thisUsername);
+			int currRep = getRep(target, thisUsername);
 			
 			myFriendMap.put(thisUsername, currRep);
 			
@@ -1068,6 +1100,23 @@ public class StudentService <T extends Comparable<T>, N extends Comparable<N>>{
 		Map<String, Integer> sortedMap = ReverseSortByValue(myFriendMap);
 		
 		return sortedMap;
+	}
+
+	public void suddenlyPost(String student, String text) {
+		//studentRepository.createPost(student, text);
+		
+		Student thisStudent = getStudent(student);
+		Post post = new Post();
+		post.setOwner(thisStudent);
+		post.setText(text);
+		post.setOwnerName(student);
+		
+		postRepository.save(post);
+		
+	}
+
+	public List<Post> getPosts() {
+		return postRepository.getPosts();
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.sociopath.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -85,13 +86,14 @@ public class StudentController {
 			modelAndView.setViewName("redirect:/");
 			return modelAndView;
 		}
-		
+		Map<String, Integer> myFriendMaps = studentService.getFriendMap(user.getUsername());
 		Student student = studentService.getStudent(user.getUsername());
+		Integer hisTotalPoint = studentService.gethisTotalPoint(user.getUsername());
 		
-		
+		modelAndView.getModel().put("hisTotalPoint", hisTotalPoint);
 		modelAndView.getModel().put("userId", user.getUsername());
 		modelAndView.getModel().put("student", student);
-		
+		modelAndView.getModel().put("myFriendMaps", myFriendMaps);
 		modelAndView.setViewName("profile");
 		
 		return modelAndView;
@@ -254,5 +256,55 @@ public class StudentController {
 		return mv;
 	}
 	
+	
+	//////////////////////////////////
+	///Event 3
+	@RequestMapping(value = "/ScheduleLunch")
+	ModelAndView Event3(ModelAndView modelAndView) {
+
+		String thisUser = getUsername();
+		
+		List<Student> students = studentService.getAllStudents();
+		modelAndView.getModel().put("thisUser", thisUser);
+		modelAndView.getModel().put("students", students);
+		modelAndView.setViewName("ScheduleLunch");
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/ScheduleLunch", method = RequestMethod.POST)
+	ModelAndView Event3(ModelAndView modelAndView, @RequestParam(name = "s1") String[] s1, @RequestParam(name = "day") int day) {
+
+		String s2 = getUsername();
+		ArrayList<String> lunchLists = studentService.haveLunch(s1, s2, day);
+
+		modelAndView.getModel().put("lunchLists", lunchLists);
+		modelAndView.setViewName("god/resultEvent3");
+		return modelAndView;
+	}
+	
+	
+	//Post Something
+		@RequestMapping(value = "/suddenlyPost")
+		ModelAndView suddenlyPost(ModelAndView modelAndView) {
+
+			String student = getUsername();
+			
+			modelAndView.setViewName("event1");
+			return modelAndView;
+		}
+	
+	
+	//Post Something
+	@RequestMapping(value = "/suddenlyPost", method = RequestMethod.POST)
+	ModelAndView suddenlyPost(ModelAndView modelAndView, @RequestParam(name = "text") String text) {
+
+		String student = getUsername();
+		studentService.suddenlyPost(student,text);
+		
+		modelAndView.setViewName("redirect:/dashboard");
+		return modelAndView;
+	}
+
 	
 }

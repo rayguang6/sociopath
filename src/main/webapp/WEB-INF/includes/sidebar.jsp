@@ -1,5 +1,5 @@
 
-<div id="sideBarContainer">
+<div id="sideBarContainer" class="SIDEBAR">
 	<nav class="sideBar">
 
 		<div class="group">
@@ -58,7 +58,7 @@
 			</span>
 			
 			<span class="sideDiv">
-				<a href="${contextRoot}/MeetCrush" class="sideATag">
+				<a href="${contextRoot}/event5" class="sideATag">
 				<span class="navItem">
 				<img src="img/crush.png" class="sideIcon"> <span role="link" tabindex="0" 
 						class="navItemLink">Meet Crush </span>
@@ -67,7 +67,7 @@
 			</span>
 			
 			<span class="sideDiv">
-				<a href="${contextRoot}/Friendship" class="sideATag">
+				<a href="${contextRoot}/preEvent6" class="sideATag">
 				<span class="navItem">
 				<img src="img/friendship.png" class="sideIcon"> <span role="link" tabindex="0" 
 						class="navItemLink">Friendship</span>

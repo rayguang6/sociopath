@@ -201,14 +201,20 @@ textarea {
 }
 
 .chat-message-sent {
-	width: 70vw;
-	background-color: blue;
+    right: 0;
+    margin-right: 0;
+    margin-left: 70%;
+     background-image: linear-gradient(#FF6073, #A633FA);
+    display: inline-block;
+       
 }
 
 .chat-message-reply {
-	width: 60vw;
-	margin-left: 10vw;
-	background-color: green;
+    right: 0;
+    margin-right: 0;
+    margin-right: 70%;
+    background-image: linear-gradient(#00B2FF, #006AFF);
+    display: inline-block;
 }
 
 #chat-message-record {
@@ -386,7 +392,8 @@ textarea {
 
 .postInput {
 	background-color: #F0F2F5;
-	margin-bottom: 10px;
+	margin: 20px 0 20px 0;
+	border-radius:10px;
 }
 
 .myForm {
@@ -408,7 +415,7 @@ textarea {
 
 .editPost {
 	align-self: end;
-	right: 10px;
+	right: 30px;
 }
 
 .postEditLink{
@@ -418,9 +425,9 @@ textarea {
 }
 
 .postBody {
-	border-bottom: 1px solid #a0a0a0;
-	padding: 10px 0 10px 0;
-	margin:10px auto;
+	margin:20px auto 40px auto;
+	
+	
 }
 
 .postingButtons {
@@ -433,6 +440,10 @@ textarea {
 }
 
 .postBottom{
+	border-top: 1px solid #a0a0a0;
+	border-bottom: 1px solid #a0a0a0;
+	padding-top:10px;
+	padding-bottom:10px;
 	width:100%;
 	margin-top:10px;
 }
@@ -632,4 +643,32 @@ select.btn-mini + .caret {
 
 .form-control-sm{
 	border: 1px solid #ced4da;
+}
+
+.hidden{
+	 visibility: hidden;
+}
+
+@media only screen and (max-width: 700px) {
+  div.SIDEBAR {
+    display: none;
+  }
+}
+
+div.postContainer {
+  -webkit-box-shadow: 6px 6px 20px 0px rgba(213,235,250,1);
+-moz-box-shadow: 6px 6px 20px 0px rgba(213,235,250,1);
+box-shadow: 6px 6px 20px 0px rgba(213,235,250,1);
+}
+
+.comments{
+	display:flex;
+}
+
+.commentBody{
+	background-color:#F0F2F5;
+	border-radius : 15px;
+	width:90%;
+	padding : 10px;
+	margin-top:5px;
 }

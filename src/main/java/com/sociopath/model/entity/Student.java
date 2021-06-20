@@ -71,7 +71,7 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 //		vertexInfo = null;
 //		nextVertex = null;
 //		relativeRep = null;
-		this.divingrate = (int) (Math.random() * 100);
+		this.divingrate = (int) (Math.random() * 99 + 1 );
 		reputation = 10 - (divingrate / 10);// if diving rate high, reputation low
 		if (reputation == 0)
 			reputation = 1;
@@ -84,7 +84,7 @@ public class Student<T extends Comparable<T>, N extends Comparable<N>> implement
 	      vertexInfo = vInfo;
 	      nextVertex = next;
 	      reputationList = null;
-	      divingrate = (int) (Math.random() * 100);
+	      divingrate = (int) (Math.random() * 99+1);
 	      reputation = 10-(divingrate/10);//if diving rate high, reputation low
 	      if(reputation==0) reputation=1;
 	      lunchStart.add(setTime());

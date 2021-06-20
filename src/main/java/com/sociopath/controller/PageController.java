@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sociopath.model.entity.Post;
 import com.sociopath.model.entity.StatusUpdate;
 import com.sociopath.model.entity.Student;
 import com.sociopath.model.entity.Users;
@@ -70,6 +71,9 @@ public class PageController {
 		
 		modelAndView.getModel().put("loggedIn", loggedIn);
 		modelAndView.getModel().put("username", loggedIn);
+		
+		List<Post> posts = studentService.getPosts();
+		modelAndView.getModel().put("posts", posts);
 		modelAndView.setViewName("/dashboard");
 		
 		return modelAndView;
@@ -85,6 +89,9 @@ public class PageController {
 		modelAndView.getModel().put("loggedIn", loggedIn);
 
 		modelAndView.getModel().put("username", loggedIn);
+		
+		List<Post> posts = studentService.getPosts();
+		modelAndView.getModel().put("posts", posts);
 		
 		modelAndView.setViewName("/dashboard");
 		

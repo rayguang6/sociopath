@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.sociopath.model.entity.Users;
 import com.sociopath.model.dto.FriendResult;
 import com.sociopath.model.dto.SearchResult;
+import com.sociopath.model.entity.Post;
 import com.sociopath.model.entity.ReputationRelation;
 import com.sociopath.model.entity.Student;
 
@@ -130,4 +131,11 @@ public interface StudentRepository extends Neo4jRepository<Student, Long> {
 
 	@Query("MATCH(a:Student)<-[r:REPUTATIONS]-(b:Student) WHERE a.username=$username AND r.point>=0 RETURN b")
 	List<Student> getRealFriend(String username);
+	
+	@Query("MATCH (n:Student {username: $student}) CREATE (n) -[r:POSTED]-> (p: Post {text:$text, owner: n.username})")
+	void createPost(String student, String text);
+
+	
+	
+
 }

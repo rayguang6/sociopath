@@ -187,10 +187,7 @@
 								href="${contextRoot}/displayReputation">Display Reputation</a></li>
 							<li><a class="dropdown-item"
 								href="${contextRoot}/displayFriend">Display Friend</a></li>
-							<li><a class="dropdown-item" href="${contextRoot}/testForm">testForm</a></li>
-							<li><a class="dropdown-item" href="${contextRoot}/testForm2">testForm
-									2 </a></li>
-
+						
 							<li><hr class="dropdown-divider"></li>
 
 							<li><a class="dropdown-item" href="${contextRoot}/event1">Event

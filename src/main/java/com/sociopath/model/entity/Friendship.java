@@ -9,7 +9,7 @@ public class Friendship {
 
     private int numFriend;
     private ArrayList<Integer>[] List;
-    static ArrayList<FriendshipList> result = new ArrayList<>(); 
+    private ArrayList<FriendshipList> result = new ArrayList<>(); 
     //An ArrayList for FrienshipList is to enable sorting of the possible pathway
     
     

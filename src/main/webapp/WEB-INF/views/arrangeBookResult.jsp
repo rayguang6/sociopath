@@ -49,7 +49,7 @@ src = "https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.them
             data.append("'data':[");
             for(Map.Entry pair:dataValuePair.entrySet())
             {
-                data.append("{'label':'" + pair.getKey() + "','value':'" + pair.getValue() +"'},");
+                data.append("{'label':'" + pair.getValue() + "','value':'" + pair.getValue() +"'},");
             }
             data.replace(data.length() - 1, data.length(),"]");
             jsonData.append(data.toString());

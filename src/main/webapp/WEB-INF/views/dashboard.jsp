@@ -18,9 +18,10 @@
 		<h2>Post Something Here</h2>
 		<div class="myForm">
 
-			<form class="statusForm" >
+			<form class="statusForm" action = "suddenlyPost" method="POST">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="form-group">
-					<textarea class="form-control postInput" path="text"
+					<textarea class="form-control postInput" path="text" placeholder="How you feel today?	"
 						name="text" value=""></textarea>
 				</div>
 
@@ -49,7 +50,7 @@
 			
 			<div>
 				<h6><a href="#"> Mr Suddenly </a></h6>
-				<p> 15 June 2021</p>
+				<p> 16 June 2021</p>
 			</div>
 			
 			<a class="postEditLink" href="#">edit</a>
@@ -58,7 +59,7 @@
 		</div>
 		<div class="postBody">
 		
-			<div class="homepage-status"> First Ever Post</div>
+			<div class="homepage-status"> First Ever Post~  Happy Birthday! Let's Do It</div>
 
 		</div>
 		
@@ -72,28 +73,34 @@
 		</div>
 	</div>
 	
-	<!-- Second Post.   Currently Hardcoded -->
-	<div class="postContainer">
+	
+	
+	<!-- Suddenly Post -->
+	<c:forEach var="post" items="${posts}">
+		
+			<c:url var="editPost" value="/editstatus?id=${post.id}" />
+			<c:url var="deleteLink" value="/deletestatus?id=${post.id}" />
+
+
+			<div class="postContainer">
 		<div class="d-flex postHead ">
 		
 			<div class="postProfile">
-				<img
-					src="https://scontent.fmkz1-1.fna.fbcdn.net/v/t1.6435-9/92952811_2914026528717170_5238843194598227968_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=174925&_nc_ohc=gWp41UAvy20AX94P4Sp&_nc_ht=scontent.fmkz1-1.fna&oh=f6a30697e2294822330c68366fb8a37f&oe=60C92E3B"
-					class="postProfileImg" alt="Owner">
+				
+				<img id="" class="postProfileImg" src="img/avatar${post.ownerName}.png" onerror="this.onerror=null; this.src='img/avatar.png'" alt="Profile Image" >	
 			</div>
 			
 			<div>
-				<h6><a href="#"> Lei Zhi Guang </a></h6>
-				<p> 16 June 2021</p>
+				<h6><a href="#"> ${post.ownerName} </a></h6>
 			</div>
 			
-			<a class="postEditLink" href="#">edit</a>
+			<a class="postEditLink" href="editPost">edit</a>
 		
 		
 		</div>
 		<div class="postBody">
 		
-			<div class="homepage-status"> Happy Birthday</div>
+			<div class="homepage-status">${post.text}</div>
 
 		</div>
 		
@@ -105,7 +112,49 @@
 				<button type="submit" class="btn btn-primary-outline outlineButton"
 					value="submit">Comment</button>
 		</div>
+		
+			<div class="commentSection">
+			
+				<div class="comments">
+					
+					<img id="" class="postProfileImg" width="50" src="img/avatar${post.ownerName}.png" onerror="this.onerror=null; this.src='img/avatar.png'" alt="Profile Image" >	
+					<div class="commentBody">
+					
+						<div class="commentName"><a href="#">${post.ownerName}</a></div>
+						<div class="commentText">
+							My Comments On This Post
+						</div>
+						
+						<div class="commentBottom">
+							<a href="#">Like</a> <a href="#">Dislike</a>
+						</div>
+						
+					</div>				
+				</div>
+				
+				<div class="comments">
+					
+					<img id="" class="postProfileImg" width="50" src="img/avatar.png" onerror="this.onerror=null; this.src='img/avatar.png'" alt="Profile Image" >	
+					<div class="commentBody">
+					
+						<div class="commentName"><a href="#">Mr. Suddenly</a></div>
+						<div class="commentText">
+							My Comments On This Post
+						</div>
+						
+						<div class="commentBottom">
+							<a href="#">Like</a> <a href="#">Dislike</a>
+						</div>
+						
+					</div>				
+				</div>
+				
+			</div>
 	</div>
+
+		</c:forEach>
+	
+	
 	
 	
 	

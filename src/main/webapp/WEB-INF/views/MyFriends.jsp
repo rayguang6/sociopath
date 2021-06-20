@@ -37,11 +37,17 @@
 							
 								</div>
 								
-							<a class="chatButton"  href="MyFriends/${myFriend.username}">
-								<img  src="/img/chatIcon.png" width="30"> 
+						<span class="hidden"> ................................................................................</span>
+							<a href="MyFriends/${myFriend.username}">
+								<img  src="/img/chatchit.png" width="30"> 
 							</a>
-								
+							<span class="hidden"> .......</span>
+							<a  href="chatview/${myFriend.id}">
+								<img  src="/img/messenger.png" width="30"> 
+							</a>
+							
 						</div>
+						
 						
 					</div>				
 									

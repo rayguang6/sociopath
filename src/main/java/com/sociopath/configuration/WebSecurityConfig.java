@@ -51,7 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/chart/*",
 						"/search",
 						"/search/*",
-						"/viewstatus"
+						"/viewstatus",
+						"/suddenlyPost",
+						"/suddenlyPost/*"
 						)
 				.permitAll()
 				.antMatchers(
@@ -132,7 +134,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/Lunch",
 						"/ScheduleLunch",
 						"/MeetCrush",
-						"/Friendship"
+						"/Friendship",
+						"/resultEvent3",
+						"/resultEvent3/*",
+						"/resultEvent5",
+						"/resultEvent5/*",
+						"/resultEvent6",
+						"/resultEvent6/*",
+						"/preEvent6",
+						"/event5",
+						"/event6",
+						"/suddenlyPost",
+						"/suddenlyPost/*"
 						)
 				.authenticated()
 				.anyRequest()

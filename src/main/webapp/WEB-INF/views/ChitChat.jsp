@@ -18,11 +18,21 @@
 		<input type="hidden" name="s1" value="${me}">
 		<input type="hidden" name="s2" value="${thisFriend}">
 		
-		<label for="s3"> Who You Want To Talking About? </label>
+		<label for="s3"> Who You Want To Talk About? </label>
 		<select id="s3" name="s3">
 		  
 		  	<c:forEach var="student" items="${students}">
-		 		 <option value="${student.username}">${student.username}</option>
+		 		
+		 		 
+		 		 
+		 		 <c:choose>
+			    <c:when test="${student.username==thisFriend}">
+			    	
+			    </c:when>    
+			    <c:otherwise>
+			         <option value="${student.username}">${student.username}</option>
+			    </c:otherwise>
+			</c:choose>
 	 		 </c:forEach>
 	 		 
 		</select>

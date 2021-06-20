@@ -270,7 +270,7 @@
 			<h1 class="profileName"><a href="${contextRoot}/profile/${student.username}">${student.username}</a></h1>
 			
 			<div class="profileRep">
-				<h3>Reputations: 100 REP</h3>
+				<h3>Total REP: ${hisTotalPoint}</h3>
 			</div>
 			
 		
@@ -288,30 +288,26 @@
 
 
 <div class="friendContainer">
-	<h1>Friends Of ${student.username} : </h1>
-	<h3>Total Friends: </h3>
-	
-	<div class="allFriends">
-			
+	<h1> ${student.username}'s Friends </h1>
+		<c:forEach var="myFriendMap" items="${myFriendMaps}">	
 		<div class="d-flex postHead ">
 		
 			<div class="postProfile">
-				<img id="currentPhoto" class="profilePhoto" src="${img}/avatar${student.username}.png" onerror="this.onerror=null; this.src='${img}/avatar.png'" alt="Profile Image" >	
+				<img id="currentPhoto" class="profilePhoto" src="${img}/avatar${myFriendMap.key}.png" onerror="this.onerror=null; this.src='${img}/avatar.png'" alt="Profile Image" >	
 
 			</div>
 			
 			<div>
-				<h3><a href="#"> Lei Zhi Guang </a></h3>
-				<h5>Reputations: 1000 REP</h5>
-				<p> About: </p>
+				<h3><a href="/displayFriend/${myFriendMap.key}"> ${myFriendMap.key}</a></h3>
+				
+				<!--  
+				<p>${student.username}'s repution towards <p><p> ${myFriendMap.key}: <p> -->
+				<c:out value="My Rep To Him --> ${myFriendMap.value}"></c:out>
+
 			</div>
-		
-		
 		</div>
+		</c:forEach>	
 		
-		</div>
-	
-	
-</div>
+	</div>
 
 </div>
